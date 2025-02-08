@@ -1,0 +1,51 @@
+.carouselWrapper {
+  padding: 2rem 0;
+  z-index: 10;
+  position: relative;
+}
+
+.carousel {
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  gap: 4rem;
+}
+
+.partner {
+  height: 2rem;
+  width: auto;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  flex-shrink: 0;
+}
+
+.partner:hover {
+  opacity: 1;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50%));
+  }
+}
+
+.track[data-animated="true"] {
+  width: max-content;
+  animation: scroll 40s linear infinite;
+}
+
+.track[data-animated="true"]:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track[data-animated="true"] {
+    animation-play-state: paused;
+  }
+}
+

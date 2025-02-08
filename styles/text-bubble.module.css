@@ -1,0 +1,39 @@
+/* ClippedTextSVG.module.css */
+.svgContainer {
+    width: 75%;
+    height: auto;
+  }
+  
+  .textStyle {
+    fill: #231F20;
+    font-family: 'Din-alternate-Bold';
+    letter-spacing: 0.17em;
+  }
+
+
+  
+.svgContainer:nth-child(2) {
+  align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+  .svgContainer {
+    width: 400px;
+    transform: scale(2);
+    transform-origin: center center;
+  }
+
+  .svgContainer:nth-child(1) {
+    align-self: center;
+  }
+
+  .svgContainer:nth-child(2) {
+    align-self: center;
+  }
+
+  .svgContainer:nth-child(3) {  
+    align-self: center;
+  }
+
+
+}
