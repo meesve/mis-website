@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import styles from "@/styles/landing.module.css"
-import Link from "next/link"
 import { ArrowDown } from "lucide-react"
 import Image from "next/image"
 
