@@ -41,7 +41,7 @@ export default function ClippedTextSVG({
 
   return (
     <svg className={styles.svgContainer} viewBox="0 0 1436.34 160.59" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#e5e6d8" d={shapes[shape]} />
+      <path fill="#f5f5f0" d={shapes[shape]} />
       {textLines.map((line, index) => (
         <text 
           key={index}
