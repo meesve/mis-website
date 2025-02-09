@@ -3,7 +3,6 @@ import styles from "@/styles/layout.module.css"
 import Footer from "@/components/footer"
 import PartnerCarousel from "@/components/partner-carousel"
 import Image from "next/image"
-import ClippedTextSVG from "@/components/text-bubble"
 import ContactForm from "@/components/contact-form"
 
 export default function HomePage() {
