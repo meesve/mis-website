@@ -102,8 +102,13 @@
 .ctaButton {
   transition: transform 0.2s ease;
 }
+/* this is for allignment reasons */
+
+.ctaButton:nth-child(1) {
+  /* move 10 px to the top */
+  margin-top: -10px;
+}
 
 .ctaButton:hover {
   transform: scale(1.05);
 }
-
