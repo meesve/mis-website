@@ -21,6 +21,15 @@
   flex-shrink: 0;
 }
 
+.banner {
+  position: relative;
+  left: 125px;
+
+}
+
+/* creating a shimmy animation when hover */
+
+
 /* kleur misschien als hover  */
 
 /* .partner:hover {

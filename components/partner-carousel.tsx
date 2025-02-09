@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import styles from "@/styles/carousel.module.css"
+import Image from "next/image"
 
 const partners = [
   { name: "Mayberry", logo: "/images/partners/Asset 18.svg?height=32&width=100" },
@@ -41,7 +42,16 @@ export default function PartnerCarousel() {
     }
   }, [])
 
-  return (
+  return (<div className={styles.container}>
+        <Image 
+            src="/images/assets/banner.svg"
+            alt="You're in good company"
+            width={400}
+            height={120}
+            className={styles.banner}
+            priority
+        />
+
     <div className={styles.carouselWrapper}>
       <div className={styles.carousel}>
         <div className={styles.track} ref={scrollerRef}>
@@ -50,6 +60,7 @@ export default function PartnerCarousel() {
           ))}
         </div>
       </div>
+    </div>
     </div>
   )
 }
