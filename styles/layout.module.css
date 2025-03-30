@@ -3,7 +3,7 @@
   flex-direction: column;
   background-color: var(--primary-bg);
   background-image: url("/images/bg.svg");
-  background-size: 1700px auto;
+  background-size: 970px auto;
   background-repeat: repeat;
   overflow: unset;
   position: relative;

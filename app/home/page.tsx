@@ -73,7 +73,15 @@ export default function HomePage() {
             </div>
           </div>
           <PartnerCarousel />
+          <Image
+            src="/images/assets/tear.svg"
+            alt="wrapper"
+            width={1700}
+            height={120}
+            priority
+          />
           <ContactForm />
+          
         </main>
       </div>
       <Footer />
