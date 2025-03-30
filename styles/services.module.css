@@ -1,0 +1,189 @@
+.servicesContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: sans-serif;
+  }
+  
+  /* Title styling */
+  .titleContainer {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto 3rem;
+  }
+  
+  .titleSvg {
+    width: 100%;
+    height: auto;
+  }
+  
+  .titlePolygon {
+    fill: #e6e7d8;
+    stroke: #231f20;
+    stroke-width: 1px;
+  }
+  
+  .titleText {
+    font-size: 3rem;
+    font-weight: bold;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    fill: #000;
+  }
+  
+  /* Services grid */
+  .servicesGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 5rem;
+    margin-bottom: 7rem;
+    position: relative;
+  }
+
+  /* First row positioning */
+  .servicesGrid > div:nth-child(-n+4) {
+    transform: translateX(-20%); /* Adjust this value to move first row left/right */
+  }
+
+  /* Second row positioning */
+  .servicesGrid > div:nth-child(n+5) {
+    transform: translateX(20%); /* Adjust this value to move second row left/right */
+  }
+  
+  /* Service items sizing */
+  .serviceItem {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    width: 100%;
+    max-width: 350px; /* Base max-width for service items */
+    margin: 0 auto;
+    z-index: 2;
+  }
+  
+  .serviceItem:hover {
+    transform: translateY(-5px);
+  }
+  
+  .serviceSvg {
+    width: 100%;
+    height: auto;
+    max-height: 80px; /* Base max-height for SVGs */
+  }
+  
+  /* Individual service item sizes */
+  .serviceItem:nth-child(1) .serviceSvg { /* Cut and Sew */
+    max-height: 50px;
+  }
+  
+  .serviceItem:nth-child(2) .serviceSvg { /* Embroidery */
+    max-height: 50px;
+  }
+  
+
+  .serviceItem:nth-child(4) .serviceSvg { /* Branding */
+    max-height: 50px;
+  }
+  
+  .serviceItem:nth-child(5) .serviceSvg { /* Commercial Printing */
+    max-height: 50px;
+  }
+  
+  .serviceItem:nth-child(6) .serviceSvg { /* Pop-ups */
+    transform: scale(1.2);
+  }
+
+  .serviceItem:nth-child(7) .serviceSvg { /* Promotional Products */
+    max-height: 50px;
+  }
+  
+  .servicePolygon {
+    fill: #e6e7d8;
+    stroke: none;
+    transition: stroke 0.2s ease;
+  }
+  
+  .selected .servicePolygon {
+    stroke: #231f20;
+    stroke-width: 1px;
+  }
+  
+
+  
+  /* Heart shape */
+  .heartContainer {
+    position: absolute;
+    width: 250px;  /* Fixed width instead of percentage */
+    height: 250px; /* Fixed height instead of percentage */
+    top: -80%;
+    right: 25%;
+    transform: translate(50%, -50%);
+    z-index: 1;
+  }
+  
+  .heartImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  /* Description section */
+  .descriptionContainer {
+    width: 100%;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .descriptionContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .descriptionImageContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .descriptionImage {
+    width: 900px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .servicesGrid {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .heartContainer {
+      display: none;
+    }
+  
+    .serviceItem {
+      max-width: 300px;
+    }
+  
+    .serviceSvg {
+      max-height: 70px;
+    }
+  
+    .serviceItem:nth-child(1) .serviceSvg { max-height: 60px; }
+    .serviceItem:nth-child(2) .serviceSvg { max-height: 75px; }
+    .serviceItem:nth-child(3) .serviceSvg { max-height: 65px; }
+    .serviceItem:nth-child(4) .serviceSvg { max-height: 60px; }
+    .serviceItem:nth-child(5) .serviceSvg { max-height: 90px; }
+    .serviceItem:nth-child(6) .serviceSvg { max-height: 70px; }
+  }
+  
+  @media (max-width: 480px) {
+    .servicesGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  
