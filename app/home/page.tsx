@@ -64,7 +64,7 @@ export default function HomePage() {
         title: "SCALABILITY & FLEXIBILITY",
         content: (
           <>
-            <p>Whether you're just starting out or an industry veteran, we adapt to your brand's unique needs.</p>
+            <p>Whether you&apos;re just starting out or an industry veteran, we adapt to your brand&apos;s unique needs.</p>
             <p>
               With fast turnaround times and a streamlined workflow, we keep things efficient without sacrificing
               quality.
@@ -80,7 +80,7 @@ export default function HomePage() {
               Our balanced focus on current strengths and future aspirations positions Made In Stitches not just as a
               provider of branding solutions, but as a visionary in brand storytelling and identity creation.
             </p>
-            <p>We go beyond branding, we're crafting legacies.</p>
+            <p>We go beyond branding, we&apos;re crafting legacies.</p>
           </>
         ),
       },
@@ -88,7 +88,7 @@ export default function HomePage() {
         title: "DIRTY 30",
         content: (
           <>
-            <p>With over 30+ years of experience in commercial printing, we're not afraid to get our hands dirty.</p>
+            <p>With over 30+ years of experience in commercial printing, we&apos;re not afraid to get our hands dirty.</p>
             <p>We understand the craft and apply the best techniques to bring your designs to life.</p>
           </>
         ),
