@@ -56,7 +56,7 @@ export default function HomePage() {
               Sure, we could rattle off a long list starting with merchandise, brand identities, engaging flyers, book
               designs, large-format posters, banners, exhibition panels, and pop-up events...you name it.
             </p>
-            <p>But that's not what it's about. What really matters is what you want. We're here to make it happen.</p>
+            <p>But that&apos;s not what it&apos;s about. What really matters is what you want. We&apos;re here to make it happen.</p>
           </>
         ),
       },
