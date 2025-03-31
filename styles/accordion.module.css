@@ -7,7 +7,7 @@
     position: relative;
     overflow: visible; /* Allow content to overflow */
     box-sizing: border-box;
-    margin-top: 10rem;
+    margin-top: 7rem;
     margin-bottom: 10rem;
   }
   
@@ -20,18 +20,19 @@
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.09em;
     display: inline-block;
     background-color: #ffcccb; /* Pinkish background */
-    padding: 0.25rem 0.5rem;
+    padding: 0.01rem 0.15rem;
     position: relative;
     left: -3.5rem; /* Extend outside the container */
     margin-top: 1.5rem; /* Add some space at the top */
   }
   
   .subtitle {
+    font-family: 'JetBrains Mono', 'Open Sans', 'Oxygen', sans-serif;
     font-size: 0.875rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.07em;
     text-align: left;
   }
   
@@ -62,8 +63,9 @@
   }
   
   .title {
+    font-family: 'JetBrains Mono', 'Open Sans', 'Oxygen', sans-serif;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.07em;
   }
   
   .icon {
@@ -73,6 +75,8 @@
   }
   
   .accordionContent {
+    font-family: 'Din-alternate-Bold';
+    letter-spacing: 0.17rem;
     padding-top: 0.75rem;
     padding-bottom: 0.5rem;
     font-size: 0.875rem;

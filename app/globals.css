@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Open+Sans:wght@300&family=Oxygen:wght@300;400;700&display=swap');
+
 @font-face {
   font-family: 'Din-alternate-Bold';
   src: url('/fonts/DINAlternate-Bold.woff') format('woff');
@@ -9,9 +11,17 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Folio-Bold';
+  src: url('/fonts/Folio-Std-Bold-Condensed.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 body {
-  font-family: 'Din-alternate-Bold'
+  font-family: 'Din-alternate-Bold';
+  letter-spacing: 0.17rem;
 }
 
 @layer utilities {

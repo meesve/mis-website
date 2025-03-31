@@ -18,8 +18,8 @@ export default function HomePage() {
         content: (
           <>
             <p>We take pride in our attention to detail, ensuring every garment is made with care and precision.</p>
-            <p>Our focus is on durability, creating long-lasting pieces that hold up over time.</p>
-            <p>By using high-quality materials and advanced machinery, we stay ahead of the curve.</p>
+            <p>Our focus is on durability, creating long-lasting pieces that hold up over time.</p><br/>
+            <p>By using high-quality materials and advanced machinery, we stay ahead of the curve.</p><br/>
             <p>Your brand is in good hands with a team that values quality and reliability.</p>
           </>
         ),
@@ -40,7 +40,7 @@ export default function HomePage() {
             <p>
               Every project is unique, and we treat it that way. We work closely with you to bring your ideas to life,
               offering hands-on guidance from start to finish.
-            </p>
+            </p><br/>
             <p>
               Our made-to-measure approach solidifies that every detail is tailored to your needs, delivering a product
               that fully meets your expectations.
@@ -55,7 +55,7 @@ export default function HomePage() {
             <p>
               Sure, we could rattle off a long list starting with merchandise, brand identities, engaging flyers, book
               designs, large-format posters, banners, exhibition panels, and pop-up events...you name it.
-            </p>
+            </p><br/>
             <p>But that&apos;s not what it&apos;s about. What really matters is what you want. We&apos;re here to make it happen.</p>
           </>
         ),
@@ -65,7 +65,7 @@ export default function HomePage() {
         content: (
           <>
             <p>Whether you&apos;re just starting out or an industry veteran, we adapt to your brand&apos;s unique needs.</p>
-            <p>
+            <p><br/>
               With fast turnaround times and a streamlined workflow, we keep things efficient without sacrificing
               quality.
             </p>
@@ -79,7 +79,7 @@ export default function HomePage() {
             <p>
               Our balanced focus on current strengths and future aspirations positions Made In Stitches not just as a
               provider of branding solutions, but as a visionary in brand storytelling and identity creation.
-            </p>
+            </p><br/>
             <p>We go beyond branding, we&apos;re crafting legacies.</p>
           </>
         ),
@@ -88,7 +88,7 @@ export default function HomePage() {
         title: "DIRTY 30",
         content: (
           <>
-            <p>With over 30+ years of experience in commercial printing, we&apos;re not afraid to get our hands dirty.</p>
+            <p>With over 30+ years of experience in commercial printing, we&apos;re not afraid to get our hands dirty.</p><br/>
             <p>We understand the craft and apply the best techniques to bring your designs to life.</p>
           </>
         ),
