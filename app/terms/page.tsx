@@ -26,8 +26,8 @@ export default function TermsPage() {
         <p className={styles.lastUpdated}>Last updated: November 08, 2019</p>
 
         <p className={styles.paragraph}>
-          Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the
-          https://madeinstitches.nl website (the "Service") operated by Made in Stitches ("us", "we", or "our").
+          Please read these Terms and Conditions (&quot;Terms&quot;, &quot;Terms and Conditions&quot;) carefully before using the
+          https://madeinstitches.nl website (the &quot;Service&quot;) operated by Made in Stitches (&quot;us&quot;, &quot;we&quot;, or &quot;our&quot;).
         </p>
 
         <p className={styles.paragraph}>

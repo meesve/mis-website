@@ -2,23 +2,56 @@
   background: white;
   padding: 2rem;
   margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  gap: 1.5rem;
 }
 
-.footerContent {
+.mainContent {
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   font-size: 0.875rem;
+  width: 100%;
 }
 
-.leftLinks {
+.leftContent {
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.copyright {
+  font-size: 0.875rem;
+}
+
+.poweredBy {
+  font-size: 0.875rem;
 }
 
 .rightLinks {
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.bottomContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.bottomLinks {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.875rem;
 }
 
 .link {
@@ -32,7 +65,9 @@
 }
 
 .address {
-  margin-top: 0.5rem;
   font-style: normal;
+  line-height: 1.4;
+  font-size: 0.875rem;
+  text-align: right;
 }
 
