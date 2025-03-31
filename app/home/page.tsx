@@ -6,8 +6,42 @@ import Image from "next/image"
 import ContactForm from "@/components/contact-form"
 import Accordion from "@/components/accordion"
 import Services from "@/components/services"
-
+import ImageCarousel from "@/components/image-carousel"
 export default function HomePage() {
+
+  const images = [
+    {
+      src: "/images/image-carousel/hor.jpg",
+      alt: "Image",
+      subscript: "Image 1",
+      orientation: "horizontal" as const,
+    },
+    {
+      src: "/images/image-carousel/ver.jpeg",
+      alt: "Image",
+      subscript: "Image 2",
+      orientation: "vertical" as const,
+    },
+    {
+      src: "/images/image-carousel/hor.jpg",
+      alt: "Image",
+      orientation: "horizontal" as const,
+    },
+    {
+      src: "/images/image-carousel/ver.jpeg",
+      alt: "Image",
+      orientation: "vertical" as const,
+    },
+    {
+      src: "/images/image-carousel/hor.jpg",
+      alt: "Image",
+      subscript: "Image 5",
+      orientation: "horizontal" as const,
+    },
+    
+    
+    
+  ]
 
   const accordionData = {
     title: "WHAT WE'RE MADE OF",
@@ -165,13 +199,14 @@ export default function HomePage() {
           <PartnerCarousel />
           <Accordion title={accordionData.title} subtitle={accordionData.subtitle} items={accordionData.items} />
           <Services />
-          <Image
+          <ImageCarousel images={images} />
+          {/* <Image
             src="/images/assets/tear.svg"
             alt="wrapper"
             width={1700}
             height={120}
             priority
-          />
+          /> */}
           <ContactForm />
           
         </main>

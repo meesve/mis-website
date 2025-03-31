@@ -1,0 +1,78 @@
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+  padding: 80px 0;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.tearBackground {
+  position: absolute;
+  top: -200px;
+  left: -250px; /* Extend far to the left */
+  width: calc(100% + 500px); /* Extend both left and right significantly */
+  height: calc(100% + 300px);
+  z-index: 1;
+  object-fit: cover;
+  transform: scale(1.2); /* Make the tear pattern larger */
+}
+
+.carouselContainer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: auto; /* Changed from smooth to auto for seamless looping */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  cursor: grab;
+  width: 100%;
+  background-color: transparent;
+  height: 300px;
+  position: relative;
+  gap: 60px;
+  user-select: none; /* Prevent text selection during drag */
+  -webkit-user-select: none;
+}
+
+.carouselContainer::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.imageWrapper {
+  flex: 0 0 auto;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  position: relative;
+  height: 85%; /* Reduced to make room for subscript */
+  overflow: hidden;
+}
+
+.horizontal {
+  width: 400px;
+}
+
+.vertical {
+  width: 200px;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none; /* Prevent image drag events */
+}
+
+.subscript {
+  color: black;
+  font-size: 14px;
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 500;
+}
+  
+  
