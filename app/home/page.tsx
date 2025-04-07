@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import styles from "@/styles/layout.module.css"
 import Footer from "@/components/footer"
@@ -7,7 +9,34 @@ import ContactForm from "@/components/contact-form"
 import Accordion from "@/components/accordion"
 import Services from "@/components/services"
 import ImageCarousel from "@/components/image-carousel"
+import { useState, useEffect, useRef } from "react"
+
 export default function HomePage() {
+  const [isMobile, setIsMobile] = useState(false)
+  const servicesRef = useRef<HTMLDivElement>(null)
+  const projectsRef = useRef<HTMLDivElement>(null)
+  const contactRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    
+    // Check on initial load
+    checkIfMobile()
+    
+    // Set up event listener for window resize
+    window.addEventListener('resize', checkIfMobile)
+    
+    // Clean up event listener
+    return () => window.removeEventListener('resize', checkIfMobile)
+  }, [])
+
+  const scrollTo = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   const images = [
     {
@@ -38,9 +67,6 @@ export default function HomePage() {
       subscript: "Image 5",
       orientation: "horizontal" as const,
     },
-    
-    
-    
   ]
 
   const accordionData = {
@@ -136,37 +162,42 @@ export default function HomePage() {
         <main className={styles.mainContent}>
           <header className={styles.header}>
             <Link href="/home" className={styles.logo}>
-            <Image
+              <Image
                 src="/images/logo_mis.svg"
                 alt="MADE IN STITCHES"
                 width={160}
                 height={120}
                 className={styles.logo}
                 priority
-            />
+              />
             </Link>
 
-            <nav className={styles.nav}>
-              <Link href="/about" className={styles.navLink}>
-                about
-              </Link>
-              <Link href="/projects" className={styles.navLink}>
-                projects
-              </Link>
-              <Link href="/shop" className={styles.navLink}>
-                shop
-              </Link>
-              <Link href="/contact" className={styles.navLink}>
-                contact
-              </Link>
-
-              <div className={styles.langSwitch}>
-                <button>🇳🇱</button>
-                <button>🇬🇧</button>
+            {isMobile ? (
+              <div className={styles.mobileLanguageOnly}>
+                <div className={styles.langSwitch}>
+                  <button>🇳🇱</button>
+                  <button>🇬🇧</button>
+                </div>
               </div>
-            </nav>
-          </header>
+            ) : (
+              <nav className={styles.nav}>
+                <button onClick={() => scrollTo(servicesRef)} className={styles.navLink}>
+                  about
+                </button>
+                <button onClick={() => scrollTo(projectsRef)} className={styles.navLink}>
+                  projects
+                </button>
+                <button onClick={() => scrollTo(contactRef)} className={styles.navLink}>
+                  contact
+                </button>
 
+                <div className={styles.langSwitch}>
+                  <button>🇳🇱</button>
+                  <button>🇬🇧</button>
+                </div>
+              </nav>
+            )}
+          </header>
           <div className={styles.pageContent}>
             <div className={styles.heroSection}>
               <Image
@@ -177,14 +208,14 @@ export default function HomePage() {
                 className={styles.topBanner}
               />
               <div className={styles.ctaButtons}>
-                <Link href="/contact" className={styles.ctaButton}>
+                <button onClick={() => scrollTo(contactRef)} className={styles.ctaButton}>
                   <Image 
                     src="/images/assets/button.svg"
                     alt="Thread us a message"
                     width={400}
                     height={80}
                   />
-                </Link>
+                </button>
                 <Link href="tel:+yourphonenumber" className={styles.ctaButton}>
                   <Image
                     src="/images/assets/button2.svg"
@@ -198,16 +229,15 @@ export default function HomePage() {
           </div>
           <PartnerCarousel />
           <Accordion title={accordionData.title} subtitle={accordionData.subtitle} items={accordionData.items} />
-          <Services />
-          <ImageCarousel images={images} />
-          {/* <Image
-            src="/images/assets/tear.svg"
-            alt="wrapper"
-            width={1700}
-            height={120}
-            priority
-          /> */}
-          <ContactForm />
+          <div ref={servicesRef}>
+            <Services />
+          </div>
+          <div ref={projectsRef}>
+            <ImageCarousel images={images} />
+          </div>
+          <div ref={contactRef}>
+            <ContactForm />
+          </div>
           
         </main>
       </div>

@@ -15,11 +15,42 @@ export default function ContactForm() {
     referralSource: "instagram" as ReferralSource,
     message: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Handle form submission
-    console.log(formData)
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      if (response.ok) {
+        setSubmitStatus("success")
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          referralSource: "instagram" as ReferralSource,
+          message: "",
+        })
+      } else {
+        setSubmitStatus("error")
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setSubmitStatus("error")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -108,16 +139,39 @@ export default function ContactForm() {
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           />
         </div>
+
+        {submitStatus === "success" && (
+          <div className={styles.successMessage}>
+            Thank you for your message! We'll get back to you soon.
+          </div>
+        )}
+        
+        {submitStatus === "error" && (
+          <div className={styles.errorMessage}>
+            Something went wrong. Please try again or contact us directly.
+          </div>
+        )}
+
+        <button 
+          type="submit" 
+          className={styles.sendButton}
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "sending..." : "send"}
+        </button>
       </form>
 
       <div className={styles.contactInfo}>
         <h1 className={styles.title}>
           touch base! <Heart className={styles.heart} fill="currentColor" />
         </h1>
-        <p>+31 (0) 20 400 3003</p>
-        <p>info@madeinstitches.nl</p>
+        <div className={styles.contactInfoItems}>
+          <p>+31 (0) 20 400 3003</p>
+          <p>info@madeinstitches.nl</p>
+        </div>
 
         <div className={styles.address}>
+          <h1 className={styles.title}>visit us!</h1>
           <div className={styles.addressContent}>
             <p>Made in Stitches</p>
             <p>Melbournestraat 25</p>

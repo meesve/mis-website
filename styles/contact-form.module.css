@@ -50,10 +50,22 @@
     text-align: right;
   }
   
+  .contactInfoItems {
+    background-image: url('/images/assets/send-button.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 1.5rem;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
   .title {
     font-size: 2.5rem;
     font-weight: normal;
-    margin-bottom: 2rem;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -72,21 +84,45 @@
     padding: 2rem;
   }
   
-  .address::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 1px solid #333;
-    transform: rotate(0deg);
-    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  }
-  
   .addressContent {
     position: relative;
     text-align: center;
+    background-image: url('/images/assets/location-bg.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 185px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sendButton {
+    align-self: flex-end;
+    background-image: url('/images/assets/send-button.svg');
+    background-size: 120px auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    width: 120px;
+    height: 48px;
+    font-family: "Din-alternate-Bold";
+    letter-spacing: 0.3rem;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    text-transform: lowercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 4px;
+  }
+  
+  .sendButton:hover {
+    transform: scale(1.05);
   }
   
   @media (max-width: 768px) {

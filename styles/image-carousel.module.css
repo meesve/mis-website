@@ -6,6 +6,14 @@
   margin-bottom: 100px;
 }
 
+@media (max-width: 768px) {
+  .carouselWrapper {
+    padding: 40px 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
+
 .tearBackground {
   position: absolute;
   top: -200px;
@@ -15,6 +23,15 @@
   z-index: 1;
   object-fit: cover;
   transform: scale(1.2); /* Make the tear pattern larger */
+}
+
+@media (max-width: 768px) {
+  .tearBackground {
+    top: -100px;
+    left: -150px;
+    width: calc(100% + 300px);
+    height: calc(100% + 200px);
+  }
 }
 
 .carouselContainer {
@@ -33,6 +50,13 @@
   gap: 60px;
   user-select: none; /* Prevent text selection during drag */
   -webkit-user-select: none;
+}
+
+@media (max-width: 768px) {
+  .carouselContainer {
+    height: 250px;
+    gap: 30px;
+  }
 }
 
 .carouselContainer::-webkit-scrollbar {
@@ -57,8 +81,20 @@
   width: 400px;
 }
 
+@media (max-width: 768px) {
+  .horizontal {
+    width: 280px;
+  }
+}
+
 .vertical {
   width: 200px;
+}
+
+@media (max-width: 768px) {
+  .vertical {
+    width: 140px;
+  }
 }
 
 .image {
@@ -73,6 +109,13 @@
   padding: 8px 10px;
   text-align: left;
   font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .subscript {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
 }
   
   

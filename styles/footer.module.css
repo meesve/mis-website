@@ -9,6 +9,13 @@
   gap: 1.5rem;
 }
 
+@media (max-width: 768px) {
+  .footerSection {
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+  }
+}
+
 .mainContent {
   max-width: 1400px;
   margin: 0 auto;
@@ -16,6 +23,13 @@
   justify-content: space-between;
   font-size: 0.875rem;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }
 
 .leftContent {
@@ -39,6 +53,12 @@
   gap: 0.25rem;
 }
 
+@media (max-width: 768px) {
+  .rightLinks {
+    text-align: left;
+  }
+}
+
 .bottomContent {
   max-width: 1400px;
   margin: 0 auto;
@@ -48,10 +68,25 @@
   align-items: flex-end;
 }
 
+@media (max-width: 768px) {
+  .bottomContent {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+}
+
 .bottomLinks {
   display: flex;
   gap: 2rem;
   font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .bottomLinks {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 
 .link {
@@ -69,5 +104,11 @@
   line-height: 1.4;
   font-size: 0.875rem;
   text-align: right;
+}
+
+@media (max-width: 768px) {
+  .address {
+    text-align: left;
+  }
 }
 
