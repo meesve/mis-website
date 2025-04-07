@@ -13,6 +13,7 @@ import { useState, useEffect, useRef } from "react"
 
 export default function HomePage() {
   const [isMobile, setIsMobile] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const servicesRef = useRef<HTMLDivElement>(null)
   const projectsRef = useRef<HTMLDivElement>(null)
   const contactRef = useRef<HTMLDivElement>(null)
@@ -35,6 +36,9 @@ export default function HomePage() {
   const scrollTo = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth' })
+      if (isMobile) {
+        setMobileMenuOpen(false)
+      }
     }
   }
 
@@ -173,11 +177,32 @@ export default function HomePage() {
             </Link>
 
             {isMobile ? (
-              <div className={styles.mobileLanguageOnly}>
-                <div className={styles.langSwitch}>
-                  <button>🇳🇱</button>
-                  <button>🇬🇧</button>
-                </div>
+              <div className={styles.mobileNav}>
+                <button 
+                  className={styles.hamburgerBtn} 
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  aria-label="Toggle menu"
+                >
+                  {mobileMenuOpen ? '✕' : '☰'}
+                </button>
+                
+                {mobileMenuOpen && (
+                  <div className={styles.mobileMenu}>
+                    <button onClick={() => scrollTo(servicesRef)} className={styles.mobileNavLink}>
+                      about
+                    </button>
+                    <button onClick={() => scrollTo(projectsRef)} className={styles.mobileNavLink}>
+                      projects
+                    </button>
+                    <button onClick={() => scrollTo(contactRef)} className={styles.mobileNavLink}>
+                      contact
+                    </button>
+                    <div className={styles.langSwitch}>
+                      <button>🇳🇱</button>
+                      <button>🇬🇧</button>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
               <nav className={styles.nav}>
@@ -206,6 +231,8 @@ export default function HomePage() {
                 width={800}
                 height={240}
                 className={styles.topBanner}
+                style={{ width: '100%', height: 'auto' }}
+                priority
               />
               <div className={styles.ctaButtons}>
                 <button onClick={() => scrollTo(contactRef)} className={styles.ctaButton}>
@@ -214,6 +241,7 @@ export default function HomePage() {
                     alt="Thread us a message"
                     width={400}
                     height={80}
+                    style={{ width: '100%', height: 'auto', maxWidth: '400px' }}
                   />
                 </button>
                 <Link href="tel:+yourphonenumber" className={styles.ctaButton}>
@@ -222,6 +250,7 @@ export default function HomePage() {
                     alt="Call now"
                     width={200}
                     height={80}
+                    style={{ width: '100%', height: 'auto', maxWidth: '200px' }}
                   />
                 </Link>
               </div>

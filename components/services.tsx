@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from "../styles/services.module.css"
 import Image from "next/image"
 
@@ -13,45 +13,92 @@ const services: Record<
   {
     imagePath: string
     title: string
+    svgText: string
   }
 > = {
   "cut-and-sew": {
     imagePath: "/images/services/cut_sew.svg",
-    title: "Cut and Sew"
+    title: "Cut and Sew",
+    svgText: "CUT AND SEW"
   },
   "embroidery": {
     imagePath: "/images/services/embroidery.svg",
-    title: "Embroidery"
+    title: "Embroidery",
+    svgText: "EMBROIDERY"
   },
   "textile-printing": {
     imagePath: "/images/services/textile_printing.svg",
-    title: "Textile Printing"
+    title: "Textile Printing",
+    svgText: "TEXTILE PRINTING"
   },
   "branding": {
     imagePath: "/images/services/branding.svg",
-    title: "Branding"
+    title: "Branding",
+    svgText: "BRANDING"
   },
   "commercial-printing": {
     imagePath: "/images/services/commercial_printing.svg",
-    title: "Commercial Printing"
+    title: "Commercial Printing",
+    svgText: "COMMERCIAL PRINTING"
   },
   "pop-ups": {
     imagePath: "/images/services/pop_ups.svg",
-    title: "Pop-ups"
+    title: "Pop-ups",
+    svgText: "POP-UPS"
   },
 }
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState<ServiceType>("commercial-printing")
+  const [isMobile, setIsMobile] = useState(false)
+  const [mobileText, setMobileText] = useState("")
+
+  // SVG paths for different service shapes
+  const svgShapes: Record<ServiceType, string> = {
+    "cut-and-sew": "M10,5 L380,0 L390,20 L395,60 L360,75 L30,80 L5,65 L0,30 Z",
+    "embroidery": "M5,10 L350,0 L395,15 L380,50 L395,70 L50,80 L20,60 L0,20 Z",
+    "textile-printing": "M0,15 L390,0 L400,40 L380,60 L350,80 L40,70 L10,40 Z",
+    "branding": "M15,5 L370,0 L400,30 L380,70 L100,80 L50,65 L0,40 Z",
+    "commercial-printing": "M0,10 L300,0 L400,20 L370,60 L340,80 L60,70 L10,50 Z",
+    "pop-ups": "M20,0 L380,10 L400,30 L390,60 L300,80 L30,70 L0,30 Z",
+  }
+
+  // Add responsive hook to detect mobile screens
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    
+    // Set initial value
+    checkIfMobile()
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfMobile)
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile)
+  }, [])
 
   const handleServiceClick = (service: ServiceType) => {
     setSelectedService(service)
+    
+    // For mobile: show text for the selected service
+    if (isMobile) {
+      setMobileText(services[service].svgText);
+    }
   }
     return (
         <div className={styles.servicesContainer}>
           {/* Main title */}
           <div className={styles.titleContainer}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 356.7 187.77" className={styles.titleSvg}>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 356.7 187.77" 
+              className={styles.titleSvg}
+              aria-labelledby="services-title"
+              role="img"
+            >
+              <title id="services-title">SERVICES</title>
               <path
                 className={styles.titlePolygon}
                 d="M321,187.27l-63.21-32.53L4.33,168.3Q2.41,84.41.5.5L54.79,57.81,356.2,34.71Q338.61,111,321,187.27Z"
@@ -73,8 +120,13 @@ export default function Services() {
             <div
               className={`${styles.serviceItem} ${selectedService === "cut-and-sew" ? styles.selected : ""}`}
               onClick={() => handleServiceClick("cut-and-sew")}
+              role="button"
+              tabIndex={0}
+              aria-pressed={selectedService === "cut-and-sew"}
+              aria-label="Cut and Sew service"
+              onKeyDown={(e) => e.key === 'Enter' && handleServiceClick("cut-and-sew")}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350.88 59.03" className={styles.serviceSvg}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350.88 59.03" className={styles.serviceSvg} aria-hidden="true">
                 <path
                   className={styles.servicePolygon}
                   d="M350.88,22.13,337.76,59H13.12Q6.55,48,0,36.89L24.59,15.58,190.2,13.12,213.15,0Z"
@@ -96,8 +148,13 @@ export default function Services() {
             <div
               className={`${styles.serviceItem} ${selectedService === "embroidery" ? styles.selected : ""}`}
               onClick={() => handleServiceClick("embroidery")}
+              role="button"
+              tabIndex={0}
+              aria-pressed={selectedService === "embroidery"}
+              aria-label="Embroidery service"
+              onKeyDown={(e) => e.key === 'Enter' && handleServiceClick("embroidery")}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335.47 70.42" className={styles.serviceSvg}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335.47 70.42" className={styles.serviceSvg} aria-hidden="true">
                 <path
                   className={styles.servicePolygon}
                   d="M10.63,0,0,50.49l277.68-3.32,13.95,23.25L335.47,6.64Z"
@@ -120,9 +177,10 @@ export default function Services() {
               <Image
                 src="/images/assets/heart_services.png"
                 alt="Heart"
-                width={100}
-                height={100}
+                width={isMobile ? 75 : 100}
+                height={isMobile ? 75 : 100}
                 className={styles.heartImage}
+                priority
               />
             </div>
     
@@ -130,8 +188,13 @@ export default function Services() {
             <div
               className={`${styles.serviceItem} ${selectedService === "textile-printing" ? styles.selected : ""}`}
               onClick={() => handleServiceClick("textile-printing")}
+              role="button"
+              tabIndex={0}
+              aria-pressed={selectedService === "textile-printing"}
+              aria-label="Textile Printing service"
+              onKeyDown={(e) => e.key === 'Enter' && handleServiceClick("textile-printing")}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 442.43 65.1" className={styles.serviceSvg}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 442.43 65.1" className={styles.serviceSvg} aria-hidden="true">
               <path
                   className={styles.servicePolygon}
                   d="M2.66,1.33,0,41.19l26.57,14,177.37-9.3,9.77,12L385.3,47.17,418.51,65.1l23.92-47.83L414.53,0Z"
@@ -158,8 +221,13 @@ export default function Services() {
             <div
               className={`${styles.serviceItem} ${selectedService === "branding" ? styles.selected : ""}`}
               onClick={() => handleServiceClick("branding")}
+              role="button"
+              tabIndex={0}
+              aria-pressed={selectedService === "branding"}
+              aria-label="Branding service"
+              onKeyDown={(e) => e.key === 'Enter' && handleServiceClick("branding")}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 275.46 60.67" className={styles.serviceSvg}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 275.46 60.67" className={styles.serviceSvg} aria-hidden="true">
                 <path
                   className={styles.servicePolygon}
                   d="M0,0V55.75l196.75-7.38q2.06,6.15,4.1,12.3l74.61-5.74-41-50Z"
@@ -179,8 +247,13 @@ export default function Services() {
             <div
               className={`${styles.serviceItem} ${selectedService === "commercial-printing" ? styles.selected : ""}`}
               onClick={() => handleServiceClick("commercial-printing")}
+              role="button"
+              tabIndex={0}
+              aria-pressed={selectedService === "commercial-printing"}
+              aria-label="Commercial Printing service"
+              onKeyDown={(e) => e.key === 'Enter' && handleServiceClick("commercial-printing")}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 599.31 57.63" className={styles.serviceSvg}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 599.31 57.63" className={styles.serviceSvg} aria-hidden="true">
                 <path
                   className={styles.servicePolygon}
                   d="M599.31,54.16l-67.51.39L0,57.63,24.72,0,599.31,8.06Z"
@@ -210,8 +283,13 @@ export default function Services() {
             <div
               className={`${styles.serviceItem} ${selectedService === "pop-ups" ? styles.selected : ""}`}
               onClick={() => handleServiceClick("pop-ups")}
+              role="button"
+              tabIndex={0}
+              aria-pressed={selectedService === "pop-ups"}
+              aria-label="Pop-ups service"
+              onKeyDown={(e) => e.key === 'Enter' && handleServiceClick("pop-ups")}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 233.27 62.16" className={styles.serviceSvg}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 233.27 62.16" className={styles.serviceSvg} aria-hidden="true">
                 <path
                   className={styles.servicePolygon}
                   d="M2.93,4.39Q1.46,33.27,0,62.16l116.27-13.9,117,5.85Q228.16,27.07,223,0L114.08,11.7Z"
@@ -227,6 +305,26 @@ export default function Services() {
             </div>
           </div>
     
+          {/* Mobile text display - positioned between services grid and description */}
+          {isMobile && mobileText && (
+            <div className={styles.mobileTextDisplay}>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 400 80" 
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path
+                  d={svgShapes[selectedService]}
+                  fill="#e6e7d8"
+                  stroke="#231f20"
+                  strokeWidth="1"
+                />
+              </svg>
+              <span>{mobileText}</span>
+            </div>
+          )}
+    
           {/* Description section - just an image with text */}
           <div className={styles.descriptionContainer}>
             <div className={styles.descriptionContent}>
@@ -237,6 +335,8 @@ export default function Services() {
                   width={600}
                   height={400}
                   className={styles.descriptionImage}
+                  priority
+                  sizes="(max-width: 768px) 100vw, 900px"
                 />
               </div>
             </div>

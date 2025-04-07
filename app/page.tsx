@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import styles from "@/styles/landing.module.css"
-import { ArrowDown } from "lucide-react"
 import Image from "next/image"
 import StopMotion from "@/components/stop-motion"
 
@@ -16,13 +15,6 @@ export default function LandingPage() {
     setMounted(true)
   }, [])
 
-  const handleTransition = (e: React.MouseEvent) => {
-    e.preventDefault()
-    setIsExiting(true)
-    setTimeout(() => {
-      router.push('/home')
-    }, 500) // Match this with the CSS transition duration
-  }
 
   if (!mounted) return null
 

@@ -24,6 +24,13 @@ body {
   letter-spacing: 0.17rem;
 }
 
+/* Add scroll padding for anchor links on mobile */
+@media screen and (max-width: 768px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -160,8 +160,8 @@
   @media (max-width: 768px) {
     .servicesContainer {
       padding: 1rem;
-      margin-top: 3rem;
-      margin-bottom: 3rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
     }
 
     .titleContainer {
@@ -171,9 +171,9 @@
 
     .servicesGrid {
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 3rem;
-      margin-bottom: 4rem;
+      gap: 0;
+      margin-top: 0;
+      margin-bottom: 0;
     }
 
     /* Reset positioning for mobile */
@@ -183,41 +183,53 @@
     }
 
     .heartContainer {
-      display: none;
+      width: 150px;
+      height: 150px;
+      top: -40%;
+      right: 50%;
+      transform: translateX(50%);
     }
 
     .serviceItem {
-      max-width: 300px;
+      max-width: 100%;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .serviceSvg {
-      max-height: 70px;
+      max-height: 60px;
+      width: 100%;
     }
 
-    .serviceItem:nth-child(1) .serviceSvg { max-height: 60px; }
-    .serviceItem:nth-child(2) .serviceSvg { max-height: 75px; }
-    .serviceItem:nth-child(3) .serviceSvg { max-height: 65px; }
-    .serviceItem:nth-child(4) .serviceSvg { max-height: 60px; }
-    .serviceItem:nth-child(5) .serviceSvg { max-height: 90px; }
-    .serviceItem:nth-child(6) .serviceSvg { max-height: 70px; }
+    .serviceItem:nth-child(1) .serviceSvg { max-height: 30px; }
+    .serviceItem:nth-child(2) .serviceSvg { max-height: 30px; }
+    .serviceItem:nth-child(3) .serviceSvg { max-height: 30px; }
+    .serviceItem:nth-child(4) .serviceSvg { max-height: 25px; }
+    .serviceItem:nth-child(5) .serviceSvg { max-height: 30px; }
+    .serviceItem:nth-child(6) .serviceSvg { max-height: 60px; }
+    .serviceItem:nth-child(7) .serviceSvg { max-height: 25px; }
     
     .descriptionImage {
       width: 100%;
+      max-width: 600px;
     }
   }
   
   @media (max-width: 480px) {
-    .servicesContainer {
-      padding: 0.5rem;
-    }
-    
     .servicesGrid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
+      gap: 0;
+      margin-top: 0;
     }
     
     .serviceItem {
-      max-width: 250px;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
+    .serviceSvg {
+      max-height: 50px;
     }
     
     .descriptionContent {
@@ -226,6 +238,88 @@
     
     .titleText {
       font-size: 2rem;
+    }
+
+    .heartContainer {
+      width: 100px;
+      height: 100px;
+      top: -20%;
+    }
+  }
+
+  /* Mobile text display for service items */
+  .mobileTextDisplay {
+    display: none;
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    margin: 2rem 0;
+    padding: 1.5rem 0.5rem;
+    border-radius: 0;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+    background-color: transparent;
+    height: 80px;
+  }
+
+  .mobileTextDisplay svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .mobileTextDisplay span {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #231f20;
+    text-transform: uppercase;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Add touch-friendly styles for mobile */
+  @media (max-width: 768px) {
+    .serviceItem {
+      padding: 0.5rem;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .serviceItem:active {
+      background-color: rgba(230, 231, 216, 0.5);
+      transform: scale(0.98);
+    }
+    
+    /* Show mobile text display */
+    .mobileTextDisplay {
+      display: block;
+      min-height: 80px;
+    }
+    
+    /* Increase touch target size */
+    .serviceItem:before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      z-index: -1;
     }
   }
   
