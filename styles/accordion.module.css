@@ -98,3 +98,14 @@
     height: 35px;
   }
   
+  @media (max-width: 768px) {
+    .accordionContainer {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      max-width: 350px;
+    }
+
+    .mainTitle {
+      left: -1.75rem;
+    }
+  }
