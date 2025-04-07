@@ -14,7 +14,7 @@ export default function PrivacyPage() {
       </header>
 
       <nav className={styles.navigation}>
-        <Link href="/terms" className={styles.Link}>
+        <Link href="/terms" className={styles.link}>
           terms and conditions
         </Link>
         <Link href="/privacy" className={styles.activeLink}>

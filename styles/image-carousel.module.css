@@ -17,12 +17,12 @@
 .tearBackground {
   position: absolute;
   top: -200px;
-  left: -250px; /* Extend far to the left */
-  width: calc(100% + 500px); /* Extend both left and right significantly */
+  left: -250px;
+  width: calc(100% + 500px);
   height: calc(100% + 300px);
   z-index: 1;
   object-fit: cover;
-  transform: scale(1.2); /* Make the tear pattern larger */
+  transform: scale(1.2);
 }
 
 @media (max-width: 768px) {
@@ -39,28 +39,31 @@
   z-index: 2;
   display: flex;
   overflow-x: auto;
-  scroll-behavior: auto; /* Changed from smooth to auto for seamless looping */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  overflow-y: hidden;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   cursor: grab;
   width: 100%;
-  background-color: transparent;
   height: 300px;
-  position: relative;
   gap: 60px;
-  user-select: none; /* Prevent text selection during drag */
+  user-select: none;
   -webkit-user-select: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  padding: 0 5%;
 }
 
 @media (max-width: 768px) {
   .carouselContainer {
     height: 250px;
     gap: 30px;
+    padding: 0 10px;
   }
 }
 
 .carouselContainer::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  display: none;
 }
 
 .imageWrapper {
@@ -73,7 +76,7 @@
 
 .imageContainer {
   position: relative;
-  height: 85%; /* Reduced to make room for subscript */
+  height: 85%;
   overflow: hidden;
 }
 
@@ -83,7 +86,7 @@
 
 @media (max-width: 768px) {
   .horizontal {
-    width: 280px;
+    width: 240px;
   }
 }
 
@@ -93,14 +96,14 @@
 
 @media (max-width: 768px) {
   .vertical {
-    width: 140px;
+    width: 120px;
   }
 }
 
 .image {
   object-fit: cover;
   object-position: center;
-  pointer-events: none; /* Prevent image drag events */
+  pointer-events: none;
 }
 
 .subscript {

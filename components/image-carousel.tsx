@@ -22,10 +22,15 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
   const [scrollLeft, setScrollLeft] = useState(0)
+  const isScrolling = useRef(false)
+  const animationRef = useRef<number | null>(null)
+  const velocity = useRef(0)
+  const lastX = useRef(0)
+  const lastTime = useRef(0)
 
   // Create a circular array of images for seamless looping
   // We duplicate the images to ensure there are enough for scrolling in either direction
-  const extendedImages = [...images, ...images, ...images]
+  const extendedImages = [...images, ...images, ...images, ...images, ...images]
 
   useEffect(() => {
     const carousel = carouselRef.current
@@ -33,7 +38,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
 
     // Set initial scroll position to the middle set
     const scrollToMiddle = () => {
-      const singleSetWidth = carousel.scrollWidth / 3
+      const singleSetWidth = carousel.scrollWidth / 5 * 2
       carousel.scrollLeft = singleSetWidth
     }
 
@@ -41,36 +46,77 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
 
     // Handle the seamless infinite scroll
     const handleScroll = () => {
-      if (!carousel) return
-
+      if (isScrolling.current || !carousel) return
+      
       const totalWidth = carousel.scrollWidth
-      const singleSetWidth = totalWidth / 3
-
-      // If we've scrolled past the middle set to the right
-      if (carousel.scrollLeft >= singleSetWidth * 2) {
-        // Jump back to the first set + the overflow amount
-        const overflowAmount = carousel.scrollLeft - singleSetWidth * 2
-        carousel.scrollLeft = singleSetWidth + overflowAmount
-      }
-
-      // If we've scrolled before the middle set to the left
-      if (carousel.scrollLeft < singleSetWidth) {
-        // Jump forward to the third set - the underflow amount
-        const underflowAmount = singleSetWidth - carousel.scrollLeft
-        carousel.scrollLeft = singleSetWidth * 2 - underflowAmount
+      const singleSetWidth = totalWidth / 5
+      
+      // If scrolled past the middle sets
+      if (carousel.scrollLeft >= singleSetWidth * 3) {
+        isScrolling.current = true
+        // Wait for scrolling to stop before adjusting
+        setTimeout(() => {
+          carousel.style.scrollBehavior = 'auto'
+          carousel.scrollLeft = singleSetWidth * 2 + (carousel.scrollLeft - singleSetWidth * 3)
+          setTimeout(() => {
+            carousel.style.scrollBehavior = ''
+            isScrolling.current = false
+          }, 50)
+        }, 100)
+      } 
+      // If scrolled before the middle sets
+      else if (carousel.scrollLeft < singleSetWidth) {
+        isScrolling.current = true
+        // Wait for scrolling to stop before adjusting
+        setTimeout(() => {
+          carousel.style.scrollBehavior = 'auto'
+          carousel.scrollLeft = singleSetWidth * 2 - (singleSetWidth - carousel.scrollLeft)
+          setTimeout(() => {
+            carousel.style.scrollBehavior = ''
+            isScrolling.current = false
+          }, 50)
+        }, 100)
       }
     }
 
-    carousel.addEventListener("scroll", handleScroll)
-    return () => carousel.removeEventListener("scroll", handleScroll)
+    carousel.addEventListener("scroll", handleScroll, { passive: true })
+    
+    return () => {
+      carousel.removeEventListener("scroll", handleScroll)
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    }
   }, [images.length])
+
+  // Apply deceleration after touch/mouse is released 
+  const applyMomentum = () => {
+    if (!carouselRef.current || Math.abs(velocity.current) < 0.5) {
+      velocity.current = 0;
+      return;
+    }
+
+    // Apply friction to gradually slow down
+    velocity.current *= 0.95;
+    
+    carouselRef.current.scrollLeft -= velocity.current;
+    
+    animationRef.current = requestAnimationFrame(applyMomentum);
+  };
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!carouselRef.current) return
 
-    e.preventDefault() // Prevent default drag behavior
+    // Stop any ongoing momentum scrolling
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+      velocity.current = 0;
+    }
+
     setIsDragging(true)
-    setStartX(e.pageX - carouselRef.current.offsetLeft)
+    setStartX(e.clientX)
+    lastX.current = e.clientX;
+    lastTime.current = Date.now();
     setScrollLeft(carouselRef.current.scrollLeft)
     carouselRef.current.style.cursor = "grabbing"
   }
@@ -80,30 +126,68 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
     if (carouselRef.current) {
       carouselRef.current.style.cursor = "grab"
     }
+    
+    // Start momentum scrolling
+    applyMomentum();
   }
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging || !carouselRef.current) return
 
-    e.preventDefault()
-    const x = e.pageX - carouselRef.current.offsetLeft
-    const walk = (x - startX) * 2 // Scroll speed multiplier
+    // Calculate velocity for momentum scrolling
+    const now = Date.now();
+    const dt = now - lastTime.current;
+    if (dt > 0) {
+      const dx = e.clientX - lastX.current;
+      velocity.current = dx / dt * 15; // Scale factor for comfortable momentum
+    }
+    lastX.current = e.clientX;
+    lastTime.current = now;
+
+    const x = e.clientX
+    const walk = (x - startX) * 1.2 // Reduced for smoother scrolling
     carouselRef.current.scrollLeft = scrollLeft - walk
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
     if (!carouselRef.current) return
 
+    // Stop any ongoing momentum scrolling
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+      velocity.current = 0;
+    }
+
     setIsDragging(true)
-    setStartX(e.touches[0].pageX - carouselRef.current.offsetLeft)
+    setStartX(e.touches[0].clientX)
+    lastX.current = e.touches[0].clientX;
+    lastTime.current = Date.now();
     setScrollLeft(carouselRef.current.scrollLeft)
+  }
+
+  const handleTouchEnd = () => {
+    setIsDragging(false)
+    
+    // Start momentum scrolling with more momentum for mobile
+    velocity.current *= 1.2; // Give a little extra momentum on touch devices
+    applyMomentum();
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging || !carouselRef.current) return
-
-    const x = e.touches[0].pageX - carouselRef.current.offsetLeft
-    const walk = (x - startX) * 2
+    
+    // Calculate velocity for momentum scrolling
+    const now = Date.now();
+    const dt = now - lastTime.current;
+    if (dt > 0) {
+      const dx = e.touches[0].clientX - lastX.current;
+      velocity.current = dx / dt * 15; // Increased for better mobile momentum
+    }
+    lastX.current = e.touches[0].clientX;
+    lastTime.current = now;
+    
+    const x = e.touches[0].clientX
+    const walk = (x - startX) * 0.7 // Reduced for gentler touch scrolling
     carouselRef.current.scrollLeft = scrollLeft - walk
   }
 
@@ -125,7 +209,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
         onMouseLeave={handleMouseUp}
         onMouseMove={handleMouseMove}
         onTouchStart={handleTouchStart}
-        onTouchEnd={handleMouseUp}
+        onTouchEnd={handleTouchEnd}
         onTouchMove={handleTouchMove}
       >
         {extendedImages.map((image, index) => (
@@ -141,6 +225,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 draggable="false"
                 className={styles.image}
                 sizes="(max-width: 768px) 100vw, 300px"
+                loading={index < 10 ? "eager" : "lazy"}
               />
             </div>
             {image.subscript && <div className={styles.subscript}>{image.subscript}</div>}

@@ -38,6 +38,8 @@
   
   .lastUpdated {
     margin-bottom: 30px;
+    font-size: 14px;
+    color: #666;
   }
   
   .paragraph {
@@ -51,18 +53,68 @@
     margin-top: 30px;
     margin-bottom: 15px;
   }
+
+  .list {
+    margin-bottom: 20px;
+    padding-left: 20px;
+  }
+
+  .list li {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
   
   @media (max-width: 768px) {
     .container {
-      padding: 20px;
+      padding: 15px;
     }
   
     .header {
-      margin-bottom: 40px;
+      margin-bottom: 30px;
+    }
+    
+    .logo {
+      max-width: 100px;
+    }
+  
+    .navigation {
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .link,
+    .activeLink {
+      font-size: 16px;
+      padding: 5px 0;
     }
   
     .content {
       width: 100%;
+    }
+    
+    .sectionTitle {
+      font-size: 16px;
+      margin-top: 25px;
+      margin-bottom: 12px;
+    }
+    
+    .paragraph {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    
+    .lastUpdated {
+      font-size: 13px;
+    }
+    
+    .list {
+      padding-left: 15px;
+    }
+    
+    .list li {
+      font-size: 15px;
+      margin-bottom: 8px;
     }
   }
   

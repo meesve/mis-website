@@ -60,3 +60,13 @@
   }
 }
 
+@media (max-width: 768px) {
+  .banner {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 200px;
+  }
+}
+
