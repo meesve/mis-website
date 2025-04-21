@@ -256,14 +256,14 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <PartnerCarousel />
-          <Accordion title={accordionData.title} subtitle={accordionData.subtitle} items={accordionData.items} />
-          <div ref={servicesRef}>
-            <Services />
-          </div>
           <div ref={projectsRef}>
             <ImageCarousel images={images} />
           </div>
+          <div ref={servicesRef}>
+            <Services />
+          </div>
+          <PartnerCarousel />
+          <Accordion title={accordionData.title} subtitle={accordionData.subtitle} items={accordionData.items} />
           <div ref={contactRef}>
             <ContactForm />
           </div>

@@ -5,6 +5,7 @@ import styles from "@/styles/contact-form.module.css"
 import { Heart } from "lucide-react"
 
 type ReferralSource = "instagram" | "facebook" | "friend" | "other"
+type ServiceType = "embroidery" | "textile printing" | "commercial printing" | "branding" | "cut & sew" | "pop-up" | "other"
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ export default function ContactForm() {
     lastName: "",
     email: "",
     phone: "",
+    service: "embroidery" as ServiceType,
     referralSource: "instagram" as ReferralSource,
     message: "",
   })
@@ -39,6 +41,7 @@ export default function ContactForm() {
           lastName: "",
           email: "",
           phone: "",
+          service: "embroidery" as ServiceType,
           referralSource: "instagram" as ReferralSource,
           message: "",
         })
@@ -109,6 +112,26 @@ export default function ContactForm() {
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
           />
+        </div>
+
+        <div className={styles.inputGroup}>
+          <label htmlFor="service" className={styles.label}>
+            service
+          </label>
+          <select
+            id="service"
+            className={styles.select}
+            value={formData.service}
+            onChange={(e) => setFormData({ ...formData, service: e.target.value as ServiceType })}
+          >
+            <option value="embroidery">embroidery</option>
+            <option value="textile printing">textile printing</option>
+            <option value="commercial printing">commercial printing</option>
+            <option value="branding">branding</option>
+            <option value="cut & sew">cut & sew</option>
+            <option value="pop-up">pop-up</option>
+            <option value="other">other</option>
+          </select>
         </div>
 
         <div className={styles.inputGroup}>

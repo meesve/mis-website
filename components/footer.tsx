@@ -12,6 +12,9 @@ export default function Footer() {
           <div className={styles.poweredBy}>
             POWERED BY MAYBERRY
           </div>
+          <div className={styles.poweredBy}>
+            DEVELOPED BY <Link href="https://meesveldt.xyz/" className={styles.link}>MEES.XYZ</Link>
+          </div>
         </div>
 
         <div className={styles.rightLinks}>

@@ -58,12 +58,22 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 1.5rem;
-    min-height: 100px;
+    padding: 2rem;
+    min-height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
+    position: relative;
+    width: fit-content;
+    margin-left: auto;
+  }
+  
+  .contactInfoItems p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
   }
   
   .title {
