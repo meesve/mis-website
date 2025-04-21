@@ -57,149 +57,151 @@ export default function ContactForm() {
   }
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.inputGroup}>
-          <label htmlFor="firstName" className={`${styles.label} ${styles.required}`}>
-            first name
-          </label>
-          <input
-            id="firstName"
-            type="text"
-            required
-            className={styles.input}
-            value={formData.firstName}
-            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-          />
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label htmlFor="lastName" className={`${styles.label} ${styles.required}`}>
-            last name
-          </label>
-          <input
-            id="lastName"
-            type="text"
-            required
-            className={styles.input}
-            value={formData.lastName}
-            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-          />
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label htmlFor="email" className={`${styles.label} ${styles.required}`}>
-            email
-          </label>
-          <input
-            id="email"
-            type="email"
-            required
-            className={styles.input}
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          />
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label htmlFor="phone" className={styles.label}>
-            phone
-          </label>
-          <input
-            id="phone"
-            type="tel"
-            className={styles.input}
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          />
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label htmlFor="service" className={styles.label}>
-            service
-          </label>
-          <select
-            id="service"
-            className={styles.select}
-            value={formData.service}
-            onChange={(e) => setFormData({ ...formData, service: e.target.value as ServiceType })}
-          >
-            <option value="embroidery">embroidery</option>
-            <option value="textile printing">textile printing</option>
-            <option value="commercial printing">commercial printing</option>
-            <option value="branding">branding</option>
-            <option value="cut & sew">cut & sew</option>
-            <option value="pop-up">pop-up</option>
-            <option value="other">other</option>
-          </select>
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label htmlFor="referralSource" className={styles.label}>
-            how did you hear about us?
-          </label>
-          <select
-            id="referralSource"
-            className={styles.select}
-            value={formData.referralSource}
-            onChange={(e) => setFormData({ ...formData, referralSource: e.target.value as ReferralSource })}
-          >
-            <option value="instagram">instagram</option>
-            <option value="facebook">facebook</option>
-            <option value="friend">friend</option>
-            <option value="other">other</option>
-          </select>
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label htmlFor="message" className={styles.label}>
-            thread us a message
-          </label>
-          <textarea
-            id="message"
-            className={styles.textarea}
-            value={formData.message}
-            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          />
-        </div>
-
-        {submitStatus === "success" && (
-          <div className={styles.successMessage}>
-            Thank you for your message! We&apos;ll get back to you soon.
+    <div className={styles.outerContainer}>
+      <div className={styles.container}>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.inputGroup}>
+            <label htmlFor="firstName" className={`${styles.label} ${styles.required}`}>
+              first name
+            </label>
+            <input
+              id="firstName"
+              type="text"
+              required
+              className={styles.input}
+              value={formData.firstName}
+              onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+            />
           </div>
-        )}
-        
-        {submitStatus === "error" && (
-          <div className={styles.errorMessage}>
-            Something went wrong. Please try again or contact us directly.
+
+          <div className={styles.inputGroup}>
+            <label htmlFor="lastName" className={`${styles.label} ${styles.required}`}>
+              last name
+            </label>
+            <input
+              id="lastName"
+              type="text"
+              required
+              className={styles.input}
+              value={formData.lastName}
+              onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+            />
           </div>
-        )}
 
-        <button 
-          type="submit" 
-          className={styles.sendButton}
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "sending..." : "send"}
-        </button>
-      </form>
+          <div className={styles.inputGroup}>
+            <label htmlFor="email" className={`${styles.label} ${styles.required}`}>
+              email
+            </label>
+            <input
+              id="email"
+              type="email"
+              required
+              className={styles.input}
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            />
+          </div>
 
-      <div className={styles.contactInfo}>
-        <h1 className={styles.title}>
-          touch base! <Heart className={styles.heart} fill="currentColor" />
-        </h1>
-        <div className={styles.contactInfoItems}>
-          <p>+31 (0) 20 400 3003</p>
-          <p>info@madeinstitches.nl</p>
-        </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="phone" className={styles.label}>
+              phone
+            </label>
+            <input
+              id="phone"
+              type="tel"
+              className={styles.input}
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            />
+          </div>
 
-        <div className={styles.address}>
-          <h1 className={styles.title}>visit us!</h1>
-          <div className={styles.addressContent}>
-            <p>Made in Stitches</p>
-            <p>Melbournestraat 25</p>
-            <p>1175 RM Lijnden</p>
-            <p>The Netherlands</p>
+          <div className={styles.inputGroup}>
+            <label htmlFor="service" className={styles.label}>
+              service
+            </label>
+            <select
+              id="service"
+              className={styles.select}
+              value={formData.service}
+              onChange={(e) => setFormData({ ...formData, service: e.target.value as ServiceType })}
+            >
+              <option value="embroidery">embroidery</option>
+              <option value="textile printing">textile printing</option>
+              <option value="commercial printing">commercial printing</option>
+              <option value="branding">branding</option>
+              <option value="cut & sew">cut & sew</option>
+              <option value="pop-up">pop-up</option>
+              <option value="other">other</option>
+            </select>
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label htmlFor="referralSource" className={styles.label}>
+              how did you hear about us?
+            </label>
+            <select
+              id="referralSource"
+              className={styles.select}
+              value={formData.referralSource}
+              onChange={(e) => setFormData({ ...formData, referralSource: e.target.value as ReferralSource })}
+            >
+              <option value="instagram">instagram</option>
+              <option value="facebook">facebook</option>
+              <option value="friend">friend</option>
+              <option value="other">other</option>
+            </select>
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label htmlFor="message" className={styles.label}>
+              thread us a message
+            </label>
+            <textarea
+              id="message"
+              className={styles.textarea}
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            />
+          </div>
+
+          {submitStatus === "success" && (
+            <div className={styles.successMessage}>
+              Thank you for your message! We&apos;ll get back to you soon.
+            </div>
+          )}
+          
+          {submitStatus === "error" && (
+            <div className={styles.errorMessage}>
+              Something went wrong. Please try again or contact us directly.
+            </div>
+          )}
+
+          <button 
+            type="submit" 
+            className={styles.sendButton}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "sending..." : "send"}
+          </button>
+        </form>
+
+        <div className={styles.contactInfo}>
+          <h1 className={styles.title}>
+            touch base! <Heart className={styles.heart} fill="currentColor" />
+          </h1>
+          <div className={styles.contactInfoItems}>
+            <p>+31 (0) 20 400 3003</p>
+            <p>info@madeinstitches.nl</p>
+          </div>
+
+          <div className={styles.address}>
+            <h1 className={styles.title}>visit us!</h1>
+            <div className={styles.addressContent}>
+              <p>Made in Stitches</p>
+              <p>Melbournestraat 25</p>
+              <p>1175 RM Lijnden</p>
+              <p>The Netherlands</p>
+            </div>
           </div>
         </div>
       </div>

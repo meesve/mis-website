@@ -9,7 +9,8 @@ import styles from "@/styles/image-carousel.module.css"
 type ImageItem = {
   src: string
   alt: string
-  subscript?: string
+  title?: string
+  service?: string
   orientation: "horizontal" | "vertical"
 }
 
@@ -228,7 +229,12 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 loading={index < 10 ? "eager" : "lazy"}
               />
             </div>
-            {image.subscript && <div className={styles.subscript}>{image.subscript}</div>}
+            {(image.title || image.service) && (
+              <div className={styles.subscript}>
+                {image.title && <div className={styles.title}>{image.title}</div>}
+                {image.service && <div className={styles.service}>{image.service}</div>}
+              </div>
+            )}
           </div>
         ))}
       </div>

@@ -44,15 +44,17 @@ export default function HomePage() {
 
   const images = [
     {
-      src: "/images/image-carousel/hor.jpg",
-      alt: "Image",
-      subscript: "Image 1",
+      src: "/images/image-carousel/snipes.jpg",
+      alt: "Snipes pop-up",
+      title: "snipes",
+      service: "pop-up",
       orientation: "horizontal" as const,
     },
     {
       src: "/images/image-carousel/ver.jpeg",
       alt: "Image",
-      subscript: "Image 2",
+      title: "snipes",
+      service: "pop-up",
       orientation: "vertical" as const,
     },
     {
@@ -68,7 +70,8 @@ export default function HomePage() {
     {
       src: "/images/image-carousel/hor.jpg",
       alt: "Image",
-      subscript: "Image 5",
+      title: "snipes",
+      service: "pop-up",
       orientation: "horizontal" as const,
     },
   ]
@@ -225,34 +228,36 @@ export default function HomePage() {
           </header>
           <div className={styles.pageContent}>
             <div className={styles.heroSection}>
-              <Image
-                src="/images/assets/top_banner.svg"
-                alt="We create, you shine"
-                width={800}
-                height={240}
-                className={styles.topBanner}
-                style={{ width: '100%', height: 'auto' }}
-                priority
-              />
-              <div className={styles.ctaButtons}>
-                <button onClick={() => scrollTo(contactRef)} className={styles.ctaButton}>
-                  <Image 
-                    src="/images/assets/button.svg"
-                    alt="Thread us a message"
-                    width={400}
-                    height={80}
-                    style={{ width: '100%', height: 'auto', maxWidth: '400px' }}
-                  />
-                </button>
-                <Link href="tel:+yourphonenumber" className={styles.ctaButton}>
-                  <Image
-                    src="/images/assets/button2.svg"
-                    alt="Call now"
-                    width={200}
-                    height={80}
-                    style={{ width: '100%', height: 'auto', maxWidth: '200px' }}
-                  />
-                </Link>
+              <div className={styles.heroContent}>
+                <Image
+                  src="/images/assets/top_banner.svg"
+                  alt="We create, you shine"
+                  width={800}
+                  height={240}
+                  className={styles.topBanner}
+                  style={{ width: '100%', height: 'auto' }}
+                  priority
+                />
+                <div className={styles.ctaButtons}>
+                  <button onClick={() => scrollTo(contactRef)} className={styles.ctaButton}>
+                    <Image 
+                      src="/images/assets/button.svg"
+                      alt="Thread us a message"
+                      width={400}
+                      height={80}
+                      style={{ width: '100%', height: 'auto', maxWidth: '400px' }}
+                    />
+                  </button>
+                  <Link href="tel:+yourphonenumber" className={styles.ctaButton}>
+                    <Image
+                      src="/images/assets/button2.svg"
+                      alt="Call now"
+                      width={200}
+                      height={80}
+                      style={{ width: '100%', height: 'auto', maxWidth: '200px' }}
+                    />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

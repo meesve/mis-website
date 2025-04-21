@@ -9,14 +9,31 @@
     box-sizing: border-box;
     margin-top: 7rem;
     margin-bottom: 10rem;
-  }
-  
-  .header {
+}
+
+/* Cut here line pattern */
+.accordionContainer::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: -25px;
+    right: -25px;
+    height: 4px;
+    background-image: repeating-linear-gradient(
+        90deg,
+        #000,
+        #000 8px,
+        transparent 8px,
+        transparent 15px
+    );
+}
+
+.header {
     margin-bottom: 3rem;
     position: relative;
-  }
-  
-  .mainTitle {
+}
+
+.mainTitle {
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -27,27 +44,27 @@
     position: relative;
     left: -3.5rem; /* Extend outside the container */
     margin-top: 1.5rem; /* Add some space at the top */
-  }
-  
-  .subtitle {
+}
+
+.subtitle {
     font-family: 'JetBrains Mono', 'Open Sans', 'Oxygen', sans-serif;
     font-size: 0.875rem;
     letter-spacing: 0.07em;
     text-align: left;
-  }
-  
-  .accordionList {
+}
+
+.accordionList {
     display: flex;
     flex-direction: column;
     gap: 1.25rem; /* Space between items instead of borders */
     width: 100%;
-  }
-  
-  .accordionItem {
+}
+
+.accordionItem {
     width: 100%;
-  }
-  
-  .accordionButton {
+}
+
+.accordionButton {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -60,21 +77,21 @@
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.05em;
-  }
-  
-  .title {
+}
+
+.title {
     font-family: 'JetBrains Mono', 'Open Sans', 'Oxygen', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.07em;
-  }
-  
-  .icon {
+}
+
+.icon {
     font-size: 1.25rem;
     line-height: 1;
     flex-shrink: 0;
-  }
-  
-  .accordionContent {
+}
+
+.accordionContent {
     font-family: 'Din-alternate-Bold';
     letter-spacing: 0.17rem;
     padding-top: 0.75rem;
@@ -84,29 +101,29 @@
     width: 100%;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  }
-  
-  .iconContainer {
+}
+
+.iconContainer {
     margin-top: 3rem;
     display: flex;
     gap: 1.5rem;
     justify-content: left;
-  }
-  
-  .iconContainer .icon{
+}
+
+.iconContainer .icon{
     width: 35px;
     height: 35px;
-  }
-  
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
     .accordionContainer {
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-      max-width: 350px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        max-width: 350px;
     }
 
     .mainTitle {
-      left: -1.75rem;
-      font-size: 1.1rem;
+        left: -1.75rem;
+        font-size: 1.1rem;
     }
-  }
+}
