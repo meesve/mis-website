@@ -1,12 +1,17 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import type React from "react" // Import React
 
 
 export const metadata: Metadata = {
   title: "Made in Stitches",
-  description: "Textile & Print Design Studio",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1"
+  description: "Textile & Print Design Studio"
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1
 }
 
 export default function RootLayout({

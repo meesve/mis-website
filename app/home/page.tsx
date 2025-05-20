@@ -9,6 +9,7 @@ import ContactForm from "@/components/contact-form"
 import Accordion from "@/components/accordion"
 import Services from "@/components/services"
 import ImageCarousel from "@/components/image-carousel"
+import HeroSection from "@/components/hero-section"
 import { useState, useEffect, useRef } from "react"
 
 export default function HomePage() {
@@ -166,6 +167,15 @@ export default function HomePage() {
   return (
     <div className={styles.contentWrapper}>
       <div className={styles.container}>
+      <div className={styles.heroImage}>
+        <Image
+          src="/images/hero_bg.png"
+          alt="Hero Image"
+          width={2000}
+          height={1000}
+          priority
+          />
+      </div>
         <main className={styles.mainContent}>
           <header className={styles.header}>
             <Link href="/home" className={styles.logo}>
@@ -227,39 +237,7 @@ export default function HomePage() {
             )}
           </header>
           <div className={styles.pageContent}>
-            <div className={styles.heroSection}>
-              <div className={styles.heroContent}>
-                <Image
-                  src="/images/assets/top_banner.svg"
-                  alt="We create, you shine"
-                  width={800}
-                  height={240}
-                  className={styles.topBanner}
-                  style={{ width: '100%', height: 'auto' }}
-                  priority
-                />
-                <div className={styles.ctaButtons}>
-                  <button onClick={() => scrollTo(contactRef)} className={styles.ctaButton}>
-                    <Image 
-                      src="/images/assets/button.svg"
-                      alt="Thread us a message"
-                      width={400}
-                      height={80}
-                      style={{ width: '100%', height: 'auto', maxWidth: '400px' }}
-                    />
-                  </button>
-                  <Link href="tel:+yourphonenumber" className={styles.ctaButton}>
-                    <Image
-                      src="/images/assets/button2.svg"
-                      alt="Call now"
-                      width={200}
-                      height={80}
-                      style={{ width: '100%', height: 'auto', maxWidth: '200px' }}
-                    />
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <HeroSection onContactClick={() => scrollTo(contactRef)} />
           </div>
           <div ref={projectsRef}>
             <ImageCarousel images={images} />
