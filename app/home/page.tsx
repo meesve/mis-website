@@ -23,6 +23,7 @@ export default function HomePage() {
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth <= 768)
     }
+    // comment
     
     // Check on initial load
     checkIfMobile()
