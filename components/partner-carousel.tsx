@@ -56,7 +56,15 @@ export default function PartnerCarousel() {
       <div className={styles.carousel}>
         <div className={styles.track} ref={scrollerRef}>
           {partners.map((partner, index) => (
-            <img key={index} src={partner.logo || "/placeholder.svg"} alt={partner.name} className={styles.partner} />
+            <Image
+              key={index}
+              src={partner.logo || "/placeholder.svg"}
+              alt={partner.name}
+              className={styles.partner}
+              width={100}
+              height={32}
+              priority={index < partners.length}
+            />
           ))}
         </div>
       </div>

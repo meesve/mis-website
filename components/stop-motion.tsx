@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const StopMotion = () => {
   const frameCount = 9; // Number of frames in your animation
@@ -17,10 +18,13 @@ const StopMotion = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <img
+      <Image
         src={`/images/stopmotion/frame-${currentFrame}.png`}
         alt={`Frame ${currentFrame}`}
+        width={800}
+        height={600}
         className="w-full max-w-lg"
+        priority
       />
     </div>
   );
