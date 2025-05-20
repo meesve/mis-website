@@ -18,7 +18,7 @@ export default function HomePage() {
   const servicesRef = useRef<HTMLDivElement>(null)
   const projectsRef = useRef<HTMLDivElement>(null)
   const contactRef = useRef<HTMLDivElement>(null)
-
+  const aboutRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth <= 768)
@@ -201,11 +201,14 @@ export default function HomePage() {
                 
                 {mobileMenuOpen && (
                   <div className={styles.mobileMenu}>
-                    <button onClick={() => scrollTo(servicesRef)} className={styles.mobileNavLink}>
+                    <button onClick={() => scrollTo(aboutRef)} className={styles.mobileNavLink}>
                       about
                     </button>
                     <button onClick={() => scrollTo(projectsRef)} className={styles.mobileNavLink}>
                       projects
+                    </button>
+                    <button onClick={() => scrollTo(servicesRef)} className={styles.mobileNavLink}>
+                      services
                     </button>
                     <button onClick={() => scrollTo(contactRef)} className={styles.mobileNavLink}>
                       contact
@@ -219,15 +222,19 @@ export default function HomePage() {
               </div>
             ) : (
               <nav className={styles.nav}>
-                <button onClick={() => scrollTo(servicesRef)} className={styles.navLink}>
+                <button onClick={() => scrollTo(aboutRef)} className={styles.navLink}>
                   about
                 </button>
                 <button onClick={() => scrollTo(projectsRef)} className={styles.navLink}>
                   projects
                 </button>
+                <button onClick={() => scrollTo(servicesRef)} className={styles.navLink}>
+                  services
+                </button>
                 <button onClick={() => scrollTo(contactRef)} className={styles.navLink}>
                   contact
                 </button>
+                
 
                 <div className={styles.langSwitch}>
                   <button>🇳🇱</button>
@@ -246,7 +253,9 @@ export default function HomePage() {
             <Services />
           </div>
           <PartnerCarousel />
+          <div ref={aboutRef}>
           <Accordion title={accordionData.title} subtitle={accordionData.subtitle} items={accordionData.items} />
+          </div>
           <div ref={contactRef}>
             <ContactForm />
           </div>
