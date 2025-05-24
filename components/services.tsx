@@ -12,39 +12,63 @@ const services: Record<
   ServiceType,
   {
     imagePath: string
-    title: string
     svgText: string
+    paragraphs: string[]
   }
 > = {
   "cut-and-sew": {
     imagePath: "/images/services/cut_sew.svg",
-    title: "Cut and Sew",
-    svgText: "CUT AND SEW"
+    svgText: "CUT AND SEW",
+    paragraphs: [
+      "From concept to creation, we bring your garment designs to life.",
+      "Professional pattern making and sample development.",
+      "Small to large scale production runs with attention to detail."
+    ]
   },
   "embroidery": {
     imagePath: "/images/services/embroidery.svg",
-    title: "Embroidery",
-    svgText: "EMBROIDERY"
+    svgText: "EMBROIDERY",
+    paragraphs: [
+      "High-quality embroidery for any fabric or material.",
+      "Custom designs and logo embroidery for businesses.",
+      "Decorative embellishments and monogramming services."
+    ]
   },
   "textile-printing": {
     imagePath: "/images/services/textile_printing.svg",
-    title: "Textile Printing",
-    svgText: "TEXTILE PRINTING"
+    svgText: "TEXTILE PRINTING",
+    paragraphs: [
+      "Digital and screen printing on various fabrics.",
+      "Custom all-over prints and repeat patterns.",
+      "Eco-friendly inks and sustainable printing options."
+    ]
   },
   "branding": {
     imagePath: "/images/services/branding.svg",
-    title: "Branding",
-    svgText: "BRANDING"
+    svgText: "BRANDING",
+    paragraphs: [
+      "Seamless 360° brand support that goes beyond printing.",
+      "Enhance your brand presence and identity through memorable and meaningful designs to guarantee a result that won't go unnoticed.",
+      "From concept to creation, our studio has got you covered."
+    ]
   },
   "commercial-printing": {
     imagePath: "/images/services/commercial_printing.svg",
-    title: "Commercial Printing",
-    svgText: "COMMERCIAL PRINTING"
+    svgText: "COMMERCIAL PRINTING",
+    paragraphs: [
+      "Print remains a cornerstone of brand communication.",
+      "Our parent company, Leijten DNA, has a long tradition of producing and delivering print materials. For 30+ years, we've been the go-to choice for printing in the Amsterdam area. Big in small-format printing, both digital and offset."
+      
+    ]
   },
   "pop-ups": {
     imagePath: "/images/services/pop_ups.svg",
-    title: "Pop-ups",
-    svgText: "POP-UPS"
+    svgText: "POP-UPS",
+    paragraphs: [
+      "GRILLED TEES",
+      "'Grilled Tees' is an interactive merch stand at your favourite festival or event. We reimagine textile printing through the lens of a festival food stand. Instead of serving up meals, we'll be serving up fresh, customized merch, hot off the press.",
+      "Our unique setup blends the energy of a working kitchen with the creativity of live printing and embroidery, offering festivalgoers an unforgettable, hands-on experience and a souvenir to take home.",
+    ]
   },
 }
 
@@ -55,12 +79,12 @@ export default function Services() {
 
   // SVG paths for different service shapes
   const svgShapes: Record<ServiceType, string> = {
-    "cut-and-sew": "M10,5 L380,0 L390,20 L395,60 L360,75 L30,80 L5,65 L0,30 Z",
-    "embroidery": "M5,10 L350,0 L395,15 L380,50 L395,70 L50,80 L20,60 L0,20 Z",
-    "textile-printing": "M0,15 L390,0 L400,40 L380,60 L350,80 L40,70 L10,40 Z",
-    "branding": "M15,5 L370,0 L400,30 L380,70 L100,80 L50,65 L0,40 Z",
-    "commercial-printing": "M0,10 L300,0 L400,20 L370,60 L340,80 L60,70 L10,50 Z",
-    "pop-ups": "M20,0 L380,10 L400,30 L390,60 L300,80 L30,70 L0,30 Z",
+    "cut-and-sew": "M20,20 L580,0 L590,50 L595,200 L550,230 L40,240 L10,205 L0,60 Z",
+    "embroidery": "M10,30 L550,0 L595,45 L580,190 L595,220 L60,240 L25,200 L0,50 Z",
+    "textile-printing": "M0,35 L590,0 L600,70 L580,200 L550,240 L50,220 L15,180 Z",
+    "branding": "M20,25 L570,0 L600,60 L580,210 L120,240 L60,205 L0,70 Z",
+    "commercial-printing": "M0,30 L500,0 L600,50 L570,200 L540,240 L70,220 L15,190 Z",
+    "pop-ups": "M25,0 L580,30 L600,60 L590,200 L500,240 L35,220 L0,60 Z",
   }
 
   // Add responsive hook to detect mobile screens
@@ -84,7 +108,7 @@ export default function Services() {
     
     // For mobile: show text for the selected service
     if (isMobile) {
-      setMobileText(services[service].svgText);
+      setMobileText(services[service].paragraphs.join('\n'));
     }
   }
     return (
@@ -307,11 +331,12 @@ export default function Services() {
     
           {/* Mobile text display - positioned between services grid and description */}
           {isMobile && mobileText && (
-            <div className={styles.mobileTextDisplay}>
+            <div className={`${styles.mobileTextDisplay} ${selectedService === "pop-ups" ? styles.popupsText : ''}`}>
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 400 80" 
+                viewBox="0 0 600 250"
                 preserveAspectRatio="none"
+                className={styles.mobileTextSvg}
                 aria-hidden="true"
               >
                 <path
@@ -321,7 +346,11 @@ export default function Services() {
                   strokeWidth="1"
                 />
               </svg>
-              <span>{mobileText}</span>
+              <div className={styles.mobileTextContent}>
+                {mobileText.split('\n').map((paragraph, index) => (
+                  <p key={index} className={styles.mobileParagraph}>{paragraph}</p>
+                ))}
+              </div>
             </div>
           )}
     
@@ -331,7 +360,7 @@ export default function Services() {
               <div className={styles.descriptionImageContainer}>
                 <Image
                   src={services[selectedService].imagePath || "/placeholder.svg"}
-                  alt={services[selectedService].title}
+                  alt={services[selectedService].svgText}
                   width={600}
                   height={400}
                   className={styles.descriptionImage}

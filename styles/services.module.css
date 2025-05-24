@@ -245,6 +245,12 @@
       right: 10px;
       transform: rotate(-15deg);
     }
+
+    .descriptionContainer {
+      display: none;
+    }
+
+    
   }
   
   @media (max-width: 480px) {
@@ -283,6 +289,9 @@
       right: -10px;
       transform: rotate(-15deg);
     }
+    .descriptionContainer {
+      display: none;
+    }
   }
 
   /* Mobile text display for service items */
@@ -290,34 +299,56 @@
     display: none;
     width: 100%;
     text-align: center;
-    font-size: 1.8rem;
-    font-weight: bold;
-    letter-spacing: 0.05em;
     margin: 2rem 0;
-    padding: 1.5rem 0.5rem;
-    border-radius: 0;
+    padding: 0;
     position: relative;
     animation: fadeIn 0.3s ease-in-out;
     background-color: transparent;
-    height: 80px;
+    height: auto;
+    min-height: 250px;
   }
 
-  .mobileTextDisplay svg {
+  .mobileTextSvg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 1;
   }
 
-  .mobileTextDisplay span {
+  .mobileTextContent {
     position: relative;
-    z-index: 1;
-    display: inline-block;
-    margin-top: 0.5rem;
+    z-index: 2;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .mobileParagraph {
+    font-size: 0.9rem;
+    line-height: 1.4;
     color: #231f20;
+    margin: 0;
+    padding: 0.5rem 2rem;
+    position: relative;
+  }
+
+  /* Style for the title only in pop-ups */
+  .popupsText .mobileParagraph:first-child {
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
     text-transform: uppercase;
+  }
+
+  .mobileParagraph + .mobileParagraph {
+    margin-top: 0.75rem;
+  }
+
+  /* Remove the old mobile text styles */
+  .mobileServiceName,
+  .mobileServiceDescription {
+    display: none;
   }
 
   @keyframes fadeIn {
@@ -346,7 +377,7 @@
     /* Show mobile text display */
     .mobileTextDisplay {
       display: block;
-      min-height: 80px;
+      min-height: 230px;
     }
     
     /* Increase touch target size */
@@ -358,6 +389,30 @@
       right: -10px;
       bottom: -10px;
       z-index: -1;
+    }
+
+    .mobileTextContent {
+      padding: 2rem 1rem;
+    }
+    
+    .mobileParagraph {
+      font-size: 0.85rem;
+      padding: 0.4rem 1.8rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .mobileTextDisplay {
+      min-height: 220px;
+    }
+    
+    .mobileTextContent {
+      padding: 1.8rem 0.8rem;
+    }
+    
+    .mobileParagraph {
+      font-size: 0.8rem;
+      padding: 0.3rem 1.5rem;
     }
   }
   
