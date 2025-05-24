@@ -47,7 +47,7 @@ export default function PartnerCarousel() {
             src="/images/assets/banner.svg"
             alt="You're in good company"
             width={400}
-            height={120}
+            height={400}
             className={styles.banner}
             priority
         />
@@ -61,8 +61,8 @@ export default function PartnerCarousel() {
               src={partner.logo || "/placeholder.svg"}
               alt={partner.name}
               className={styles.partner}
-              width={100}
-              height={32}
+              width={160}
+              height={160}
               priority={index < partners.length}
             />
           ))}
