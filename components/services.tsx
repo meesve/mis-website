@@ -173,7 +173,7 @@ export default function Services() {
             </div>
     
             {/* Heart shape for embroidery - now using PNG */}
-            <div className={styles.heartContainer}>
+            <div className={`${styles.heartContainer} ${selectedService ? styles.heartVisible : ''}`}>
               <Image
                 src="/images/assets/heart_services.png"
                 alt="Heart"
