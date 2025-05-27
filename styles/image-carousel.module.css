@@ -131,5 +131,15 @@
     gap: 2px;
   }
 }
+
+.square {
+  width: 280px;
+}
+
+@media (max-width: 768px) {
+  .square {
+    width: 160px;
+  }
+}
   
   
