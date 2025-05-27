@@ -86,7 +86,7 @@
   
 
   .serviceItem:nth-child(4) .serviceSvg { /* Branding */
-    max-height: 50px;
+    max-height: 60px;
   }
   
   .serviceItem:nth-child(5) .serviceSvg { /* Commercial Printing */
@@ -94,7 +94,7 @@
   }
   
   .serviceItem:nth-child(6) .serviceSvg { /* Pop-ups */
-    transform: scale(1.2);
+    transform: scale(1.4) translateX(5px);
   }
 
   .serviceItem:nth-child(7) .serviceSvg { /* Promotional Products */
@@ -207,9 +207,8 @@
     .heartContainer {
       width: 150px;
       height: 150px;
-      top: -40%;
+      top: -50%;
       right: 50%;
-      transform: translateX(50%);
     }
 
     .serviceItem {
@@ -225,13 +224,58 @@
       width: 100%;
     }
 
-    .serviceItem:nth-child(1) .serviceSvg { max-height: 30px; }
-    .serviceItem:nth-child(2) .serviceSvg { max-height: 30px; }
-    .serviceItem:nth-child(3) .serviceSvg { max-height: 30px; }
-    .serviceItem:nth-child(4) .serviceSvg { max-height: 25px; }
-    .serviceItem:nth-child(5) .serviceSvg { max-height: 30px; }
-    .serviceItem:nth-child(6) .serviceSvg { max-height: 60px; }
-    .serviceItem:nth-child(7) .serviceSvg { max-height: 25px; }
+    /* Individual service item sizes on mobile - modify these values */
+    .serviceItem:nth-child(1) { 
+      max-width: 95%; /* Cut and Sew - adjust container size */
+    }
+    .serviceItem:nth-child(1) .serviceSvg { 
+      max-height: 35px; /* Cut and Sew - adjust SVG size */
+    }
+    
+    .serviceItem:nth-child(2) { 
+      max-width: 100%; /* Embroidery - adjust container size */
+    }
+    .serviceItem:nth-child(2) .serviceSvg { 
+      max-height: 30px; /* Embroidery - adjust SVG size */
+    }
+    
+    .serviceItem:nth-child(3) { 
+      max-width: 100%; /* Screen Printing - adjust container size */
+    }
+    .serviceItem:nth-child(3) .serviceSvg { 
+      max-height: 40px; /* Screen Printing - adjust SVG size */
+    }
+    
+    .serviceItem:nth-child(4) { 
+      max-width: 100%; /* Branding - adjust container size */
+    }
+    .serviceItem:nth-child(4) .serviceSvg { 
+      max-height: 30px; /* Branding - adjust SVG size */
+    }
+    
+    .serviceItem:nth-child(5) { 
+      max-width: 75%; /* Commercial Printing - adjust container size */
+    }
+    .serviceItem:nth-child(5) .serviceSvg { 
+      max-height: 35px; /* Commercial Printing - adjust SVG size */
+    }
+    
+    .serviceItem:nth-child(6) { 
+      max-width: 100%; /* Pop-ups - adjust container size */
+      
+    }
+    .serviceItem:nth-child(6) .serviceSvg { 
+      max-height: 70px; /* Pop-ups - adjust SVG size */
+      transform: scale(1.4) translateX(5px);
+    }
+    
+    .serviceItem:nth-child(7) { 
+      max-width: 95%; /* Promotional Products - adjust container size */
+    }
+    .serviceItem:nth-child(7) .serviceSvg { 
+      max-height: 25px; /* Promotional Products - adjust SVG size */
+      transform: translateX(5px);
+    }
     
     .descriptionImage {
       width: 100%;
@@ -279,7 +323,7 @@
     .heartContainer {
       width: 100px;
       height: 100px;
-      top: -20%;
+      top: -50%;
     }
 
     .serviceItem.selected::after {
@@ -291,6 +335,27 @@
     }
     .descriptionContainer {
       display: none;
+    }
+
+    .mobileTextDisplay {
+      min-height: 240px; /* Increased for better spacing on small screens */
+    }
+    
+    .mobileTextContent {
+      padding: 1.8rem 0.8rem;
+      text-align: left;
+    }
+
+    /* Maintain extra padding for pop-ups and branding on smallest screens */
+    .mobileTextDisplay:has(.popupsText) .mobileTextContent,
+    .mobileTextDisplay.popupsText .mobileTextContent,
+    .mobileTextDisplay[data-service="branding"] .mobileTextContent {
+      padding: 2rem 1.2rem !important; /* Ensure adequate padding on smallest screens */
+    }
+    
+    .mobileParagraph {
+      font-size: 0.8rem;
+      padding: 0.3rem 1.5rem;
     }
   }
 
@@ -305,7 +370,7 @@
     animation: fadeIn 0.3s ease-in-out;
     background-color: transparent;
     height: auto;
-    min-height: 250px;
+    min-height: 280px; /* Increased from 250px for better spacing */
   }
 
   .mobileTextSvg {
@@ -320,7 +385,14 @@
   .mobileTextContent {
     position: relative;
     z-index: 2;
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1rem; /* Reduced padding for smaller screens */
+  }
+
+  /* Maintain extra padding for pop-ups and branding on mobile */
+  .mobileTextDisplay:has(.popupsText) .mobileTextContent,
+  .mobileTextDisplay.popupsText .mobileTextContent,
+  .mobileTextDisplay[data-service="branding"] .mobileTextContent {
+    padding: 2.5rem 1.5rem !important; /* Force extra padding for tight shapes */
   }
 
   .mobileParagraph {
@@ -377,7 +449,7 @@
     /* Show mobile text display */
     .mobileTextDisplay {
       display: block;
-      min-height: 230px;
+      min-height: 260px; /* Increased for better spacing */
     }
     
     /* Increase touch target size */
@@ -398,21 +470,6 @@
     .mobileParagraph {
       font-size: 0.85rem;
       padding: 0.4rem 1.8rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .mobileTextDisplay {
-      min-height: 220px;
-    }
-    
-    .mobileTextContent {
-      padding: 1.8rem 0.8rem;
-    }
-    
-    .mobileParagraph {
-      font-size: 0.8rem;
-      padding: 0.3rem 1.5rem;
     }
   }
   

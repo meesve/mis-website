@@ -141,15 +141,16 @@
     .accordionContainer {
         margin-top: 2rem;
         margin-bottom: 2rem;
-        max-width: 350px;
+        max-width: 325px;
     }
     
     .accordionContainerBack{
-        max-width: 350px;
+        max-width: 325px;
     }
 
     .mainTitle {
         left: -1.75rem;
         font-size: 1.1rem;
     }
+
 }

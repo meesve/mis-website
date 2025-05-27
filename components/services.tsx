@@ -331,7 +331,7 @@ export default function Services() {
     
           {/* Mobile text display - positioned between services grid and description */}
           {isMobile && mobileText && (
-            <div className={`${styles.mobileTextDisplay} ${selectedService === "pop-ups" ? styles.popupsText : ''}`}>
+            <div className={`${styles.mobileTextDisplay} ${selectedService === "pop-ups" ? styles.popupsText : ''}`} data-service={selectedService}>
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 600 250"
