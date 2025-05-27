@@ -166,7 +166,7 @@ export default function HomePage() {
       orientation: "horizontal" as const,
     },
     {
-      src: "/images/image-carousel/Snipes2.jpg",
+      src: "/images/image-carousel/SNIPES2.jpg",
       alt: "Snipes",
       orientation: "horizontal" as const,
     },
