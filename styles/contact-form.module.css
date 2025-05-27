@@ -114,8 +114,7 @@
 }
   
 .heart {
-    color: #1a237e;
-    font-size: 2rem;
+    transform: rotate(13deg) translateY(-5px);
 }
   
 .address {

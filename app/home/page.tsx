@@ -169,15 +169,7 @@ export default function HomePage() {
       title: "Snipes",
       service: "pop-up",
       orientation: "horizontal" as const,
-    },
-    
-    {
-      src: "/images/image-carousel/Soul Pray Kill_cut&sew.jpeg",
-      alt: "Soul Pray Kill",
-      title: "Soul Pray Kill",
-      service: "cut & sew",
-      orientation: "vertical" as const,
-    },
+    }
     
   ]
 

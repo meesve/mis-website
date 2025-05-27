@@ -41,7 +41,7 @@ export default function HeroSection({ onContactClick }: HeroSectionProps) {
               alt="Call now"
               width={200}
               height={80}
-              style={{ width: '100%', height: 'auto', maxWidth: '200px' }}
+              style={{ width: '100%', height: 'auto', maxWidth: '160px' }}
             />
           </Link>
         </div>

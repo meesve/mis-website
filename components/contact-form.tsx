@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react"
 import styles from "@/styles/contact-form.module.css"
-import { Heart } from "lucide-react"
+import Image from "next/image"
 
 type ReferralSource = "instagram" | "facebook" | "friend" | "other"
 type ServiceType = "embroidery" | "textile printing" | "commercial printing" | "branding" | "cut & sew" | "pop-up" | "other"
@@ -187,7 +187,7 @@ export default function ContactForm() {
 
         <div className={styles.contactInfo}>
           <h1 className={styles.title}>
-            touch base! <Heart className={styles.heart} fill="currentColor" />
+            touch base! <Image src="/images/heart.png" alt="heart" width={42} height={42} className={styles.heart} />
           </h1>
           <div className={styles.contactInfoItems}>
             <p>+31 (0) 20 400 3003</p>
