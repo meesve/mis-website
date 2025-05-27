@@ -11,7 +11,7 @@ type ImageItem = {
   alt: string
   title?: string
   service?: string
-  orientation: "horizontal" | "vertical"
+  orientation: "horizontal" | "vertical" | "square"
 }
 
 interface ImageCarouselProps {
@@ -216,7 +216,14 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
         {extendedImages.map((image, index) => (
           <div
             key={`${image.src}-${index}`}
-            className={`${styles.imageWrapper} ${image.orientation === "vertical" ? styles.vertical : styles.horizontal}`}
+            className={[
+              styles.imageWrapper,
+              image.orientation === "vertical"
+                ? styles.vertical
+                : image.orientation === "square"
+                ? styles.square
+                : styles.horizontal,
+            ].join(" ")}
           >
             <div className={styles.imageContainer}>
               <Image
