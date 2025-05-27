@@ -310,10 +310,10 @@ export default function HomePage() {
                     <button onClick={() => scrollTo(contactRef)} className={styles.mobileNavLink}>
                       contact
                     </button>
-                    <div className={styles.langSwitch}>
+                    {/* <div className={styles.langSwitch}>
                       <button>🇳🇱</button>
                       <button>🇬🇧</button>
-                    </div>
+                    </div> */}
                   </div>
                 )}
               </div>
@@ -333,10 +333,10 @@ export default function HomePage() {
                 </button>
                 
 
-                <div className={styles.langSwitch}>
+                {/* <div className={styles.langSwitch}>
                   <button>🇳🇱</button>
                   <button>🇬🇧</button>
-                </div>
+                </div> */}
               </nav>
             )}
           </header>
