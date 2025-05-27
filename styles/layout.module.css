@@ -157,6 +157,64 @@
   transform: scale(1.05);
 }
 
+/* Desktop and Mobile Hero Styles */
+.desktopHero {
+  display: block;
+}
+
+.mobileHero {
+  display: none;
+}
+
+.mobileHeroText {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto 2rem;
+}
+
+.mobileHeroSvg {
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+}
+
+.mobileHeroPolygon {
+  fill: #e6e7d8;
+  stroke: #231f20;
+  stroke-width: 1;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.mobileHeroContent {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  text-align: right;
+  width: 100%;
+  max-width: 350px;
+  z-index: 2;
+  padding: 1.5rem;
+}
+
+.mobileHeroTitle {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0 0 1.2rem 0;
+  color: #231f20;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.mobileHeroDescription {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin: 0;
+  color: #231f20;
+}
+
 /* Mobile Styles */
 .mobileLanguageOnly {
   display: flex;
@@ -248,19 +306,26 @@
   }
   
   .ctaButtons {
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
     align-items: center;
+    justify-content: center;
     margin-top: 0.5rem;
   }
   
   .ctaButton {
-    width: 100%;
-    max-width: 300px;
+    width: auto;
+    max-width: 180px;
   }
   
   .ctaButton:nth-child(1) {
     margin-top: 0;
+    max-width: 200px;
+  }
+
+  .ctaButton:nth-child(2) {
+
+    max-width: 100px;
   }
   
   .langSwitch {
@@ -270,11 +335,25 @@
   .heroSection {
     max-width: 100%;
   }
+
+  /* Mobile Hero Visibility */
+  .desktopHero {
+    display: none;
+  }
+
+  .mobileHero {
+    display: block;
+  }
   
   /* Add spacing between main sections */
   .container > * + * {
     margin-top: 2rem;
   }
+
+  .container::before {
+    background-size: 1400px auto;
+  }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -286,8 +365,45 @@
     max-width: 100px;
   }
   
+  .ctaButtons {
+    gap: 0.5rem;
+  }
+  
+  .ctaButton {
+    max-width: 140px;
+  }
+  
   .ctaButton img {
     width: 100%;
     height: auto;
+  }
+
+  .container::before {
+    background-size: 1000px auto;
+  }
+
+  /* Smaller mobile hero adjustments */
+  .mobileHeroTitle {
+    font-size: 0.95rem;
+    margin: 0 0 1rem 0;
+  }
+
+  .mobileHeroDescription {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .mobileHeroText {
+    max-width: 400px;
+  }
+
+  .mobileHeroContent {
+    width: 100%;
+    max-width: 350px;
+    right: 3%;
+  }
+
+  .mobileHeroSvg {
+    min-height: 260px;
   }
 }
