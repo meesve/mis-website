@@ -159,17 +159,18 @@ export default function HomePage() {
       orientation: "horizontal" as const,
     },
     {
+      src: "/images/image-carousel/SNIPES2.jpg",
+      alt: "Snipes",
+      orientation: "horizontal" as const,
+    },
+    {
       src: "/images/image-carousel/SNIPES.jpg",
       alt: "Snipes",
       title: "Snipes",
       service: "pop-up",
       orientation: "horizontal" as const,
     },
-    {
-      src: "/images/image-carousel/SNIPES2.jpg",
-      alt: "Snipes",
-      orientation: "horizontal" as const,
-    },
+    
     {
       src: "/images/image-carousel/Soul Pray Kill_cut&sew.jpeg",
       alt: "Soul Pray Kill",
