@@ -281,7 +281,7 @@ export default function HomePage() {
           />
       </div>
         <main className={styles.mainContent}>
-          <header className={styles.header}>
+          <div className={styles.stickyLogo}>
             <Link href="/home" className={styles.logo}>
               <Image
                 src="/images/logo_mis.svg"
@@ -292,7 +292,8 @@ export default function HomePage() {
                 priority
               />
             </Link>
-
+          </div>
+          <header className={styles.header}>
             {isMobile ? (
               <div className={styles.mobileNav}>
                 <button 
