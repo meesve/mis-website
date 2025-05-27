@@ -23,6 +23,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
   const [scrollLeft, setScrollLeft] = useState(0)
+  const [loadingImages, setLoadingImages] = useState<Set<string>>(new Set())
   const isScrolling = useRef(false)
   const animationRef = useRef<number | null>(null)
   const velocity = useRef(0)
@@ -32,6 +33,23 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   // Create a circular array of images for seamless looping
   // We duplicate the images to ensure there are enough for scrolling in either direction
   const extendedImages = [...images, ...images, ...images, ...images, ...images]
+
+  useEffect(() => {
+    // Initialize all images as loading
+    const initialLoadingSet = new Set<string>()
+    extendedImages.forEach((image, index) => {
+      initialLoadingSet.add(`${image.src}-${index}`)
+    })
+    setLoadingImages(initialLoadingSet)
+  }, [images])
+
+  const handleImageLoad = (imageKey: string) => {
+    setLoadingImages(prev => {
+      const newSet = new Set(prev)
+      newSet.delete(imageKey)
+      return newSet
+    })
+  }
 
   useEffect(() => {
     const carousel = carouselRef.current
@@ -213,37 +231,48 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
         onTouchEnd={handleTouchEnd}
         onTouchMove={handleTouchMove}
       >
-        {extendedImages.map((image, index) => (
-          <div
-            key={`${image.src}-${index}`}
-            className={[
-              styles.imageWrapper,
-              image.orientation === "vertical"
-                ? styles.vertical
-                : image.orientation === "square"
-                ? styles.square
-                : styles.horizontal,
-            ].join(" ")}
-          >
-            <div className={styles.imageContainer}>
-              <Image
-                src={image.src || "/placeholder.svg"}
-                alt={image.alt}
-                fill
-                draggable="false"
-                className={styles.image}
-                sizes="(max-width: 768px) 100vw, 300px"
-                loading={index < 10 ? "eager" : "lazy"}
-              />
-            </div>
-            {(image.title || image.service) && (
-              <div className={styles.subscript}>
-                {image.title && <div className={styles.title}>{image.title}</div>}
-                {image.service && <div className={styles.service}>{image.service}</div>}
+        {extendedImages.map((image, index) => {
+          const imageKey = `${image.src}-${index}`
+          const isLoading = loadingImages.has(imageKey)
+          
+          return (
+            <div
+              key={imageKey}
+              className={[
+                styles.imageWrapper,
+                image.orientation === "vertical"
+                  ? styles.vertical
+                  : image.orientation === "square"
+                  ? styles.square
+                  : styles.horizontal,
+              ].join(" ")}
+            >
+              <div className={styles.imageContainer}>
+                {isLoading && (
+                  <div className={styles.loader}>
+                    <div className={styles.spinner}></div>
+                  </div>
+                )}
+                <Image
+                  src={image.src || "/placeholder.svg"}
+                  alt={image.alt}
+                  fill
+                  draggable="false"
+                  className={`${styles.image} ${isLoading ? styles.imageLoading : ''}`}
+                  sizes="(max-width: 768px) 100vw, 300px"
+                  loading={index < 10 ? "eager" : "lazy"}
+                  onLoad={() => handleImageLoad(imageKey)}
+                />
               </div>
-            )}
-          </div>
-        ))}
+              {(image.title || image.service) && (
+                <div className={styles.subscript}>
+                  {image.title && <div className={styles.title}>{image.title}</div>}
+                  {image.service && <div className={styles.service}>{image.service}</div>}
+                </div>
+              )}
+            </div>
+          )
+        })}
       </div>
     </div>
   )

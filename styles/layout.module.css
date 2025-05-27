@@ -3,7 +3,7 @@
   flex-direction: column;
   background-color: var(--primary-bg);
   position: relative;
-  overflow: unset;
+  overflow-x: hidden;
   z-index: 1;
 }
 
@@ -88,6 +88,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .heroImage {
